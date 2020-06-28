@@ -1,0 +1,83 @@
+<nav class="navbar navbar-expand-lg navbar-expand-md navbar-expand-sm navbar-expand-xl navbar-dark bg-primary">
+  <a class="navbar-brand" href="#">Obra Social</a>  
+  <button class="navbar-toggler" id="btnMenu" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav w-100">
+      <li class="nav-item active">
+        <a class="nav-link" href="#">Inicio <span class="sr-only">(current)</span></a>
+      </li>      
+      <li class="nav-item active">
+        <a class="nav-link" [routerLink]="['punto1']">Galería</a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link" [routerLink]="['punto2']">Nosotros</a>
+      </li>      
+
+      <li class="nav-item active" *ngIf="esSocio && logIn">
+        <a class="nav-link" [routerLink]="['novedad']">Novedad</a>
+      </li>
+
+      <li class="nav-item dropdown active" *ngIf="esAdministrador && logIn">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Administrativo<span class="sr-only">(current)</span>
+        </a>
+        <div class="dropdown-menu menubasico" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" [routerLink]="['usuario']">Usuarios</a>
+          <a class="dropdown-item" [routerLink]="['socio']">Afiliados</a>          
+          <a class="dropdown-item" [routerLink]="['servicio']">Servicios</a>          
+          <a class="dropdown-item" [routerLink]="['noticia']">Noticias</a>          
+          <a class="dropdown-item" [routerLink]="['novedad']">Novedades</a>
+        </div>        
+      </li>
+
+      <li class="nav-item dropdown active" *ngIf="esAdministrativo && logIn">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Administrativo<span class="sr-only">(current)</span>
+        </a>
+        <div class="dropdown-menu menubasico" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" [routerLink]="['socio']">Afiliados</a>          
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" [routerLink]="['servicio']">Servicios</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" [routerLink]="['noticia']">Noticias</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" [routerLink]="['novedad']">Novedades</a>
+        </div>        
+      </li>
+    
+    <li class="nav-item dropdown ml-lg-auto ml-md-auto ml-sm-auto active" *ngIf="!logIn">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Iniciar Sesión<span class="sr-only">(current)</span>
+        </a>
+        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">          
+          <div class="dropdown-item cuadroLog">
+            <div class="form-group form-control-sm row">    
+              <label for="txtUsuario" class="col-sm-3 col-form-label col-3">Usuario</label>
+              <div class="col-sm-9 col-9">
+                <input type="text" class="form-control form-control-sm" id="txtUsuario" name="city"
+                placeholder="Nombre de Usuario">
+              </div>
+            </div>
+            <div class="form-group form-control-sm row">    
+              <label for="txtPassword" class="col-sm-3 col-form-label col-3">Contraseña</label>
+              <div class="col-sm-9 col-9">
+                <input type="password" class="form-control form-control-sm" id="txtPassword" name="city">
+              </div>
+            </div>
+            <button type="submit" class="btn btn-primary btn-block btn-sm" (click)="IniciarSesion()">Entrar</button>
+          </div>
+        </div>
+      </li>                       
+      <li class="nav-item ml-lg-auto ml-md-auto" *ngIf="logIn">
+        <form>      
+          <button type="submit" class="btn btn-danger btn-sm" (click)="CerrarSesion()">
+            <i class="fas fa-paper-plane"></i> Cerrar Sesión
+          </button>
+        </form>                       
+      </li> 
+    </ul>  
+  </div>
+</nav>
+<br>
