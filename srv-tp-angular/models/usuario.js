@@ -5,7 +5,7 @@ const UsuarioSchema = new Schema({
 usuarioEmail: {type: String, required: true}, 
 password: {type:String, required:true},
 activo: {type:Boolean, required:true},
-perfil: {type:String, required: true} //-- administrador – afiliado -- administrativo  
+perfil: {type:String, required: true} 
 });
 
 module.exports = mongoose.model('Usuario', UsuarioSchema);

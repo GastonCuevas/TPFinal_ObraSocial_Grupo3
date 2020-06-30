@@ -62,7 +62,7 @@ usuarioCtrl.loginUsuario = async (req, res)=>{
                 status: 1,
                 message: "success",
                 username: user.username,
-                perfinl: user.perfil });
+                perfil: user.perfil });
         }
     })
 }

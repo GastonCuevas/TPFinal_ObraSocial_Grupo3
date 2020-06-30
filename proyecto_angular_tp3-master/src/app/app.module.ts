@@ -19,7 +19,7 @@ import { AbouthUsComponent } from './components/abouth-us/abouth-us.component';
     FooterComponent,
     HomeComponent,
     FooterComponent,
-    AbouthUsComponent
+    AbouthUsComponent,
   ],
   imports: [
     BrowserModule,
