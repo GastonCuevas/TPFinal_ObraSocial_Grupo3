@@ -41,7 +41,7 @@ usuarioCtrl.loginUsuario = async (req, res)=>{
     //en req.body se espera que vengan las credenciales de login
     //defino los criterios de busqueda en base al username y password recibidos
     const criteria = {
-        username: req.body.username,
+        usuarioEmail: req.body.usuarioEmail,
         password: req.body.password
     } 
     //el método findOne retorna un objeto que cumpla con los criterios de busqueda
@@ -61,7 +61,7 @@ usuarioCtrl.loginUsuario = async (req, res)=>{
             res.json({
                 status: 1,
                 message: "success",
-                username: user.username,
+                usuarioEmail: user.usuarioEmail,
                 perfil: user.perfil });
         }
     })

@@ -34,6 +34,8 @@ export class HeaderComponent implements OnInit {
           console.log(user);
           if (user.status == 1) {
             //vbles para mostrar-ocultar cosas en el header
+            this.usuario="";
+            this.clave="";
             this.usuarioService.userLoggedIn = true;
             this.usuarioService.userLogged = user;
             this.logIn = true;
@@ -92,6 +94,7 @@ export class HeaderComponent implements OnInit {
 
   CerrarSesion() {
     this.logIn = false;
+
   }
 
 }
