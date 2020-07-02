@@ -93,12 +93,10 @@ export class UsuarioComponent implements OnInit {
   }
 
   public cargarEmailSelect() {
-    console.log("hola")
     this.emails = new Array<string>();
     this.cargarEmails();
     // Ordena el Array Alfabeticamente, es muy facil ;)):
     this.emails.sort();
-    console.log("xD")
     this.addOptions("emailSelect", this.emails);
    }
    
