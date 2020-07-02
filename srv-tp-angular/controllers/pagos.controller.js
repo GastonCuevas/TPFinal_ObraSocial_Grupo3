@@ -6,7 +6,7 @@ pagosCtrl.getPagos = async (req, res) => {
     res.json(pagos);
 }
 
-pagosCtrl.getPagos = async (req, res) => {
+pagosCtrl.getPagosId = async (req, res) => {
     const pagos = await Pagos.findById(req.params.id);
     res.json(pagos);
 }

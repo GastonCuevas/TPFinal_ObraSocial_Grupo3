@@ -1,15 +1,15 @@
-const Usuario = require ('./../models/usuario')
+const Usuario = require ('../models/usuario');
 
 const usuarioCtrl = {}
 
 usuarioCtrl.getUsuario = async (req, res) => {
-    pagos = await Pagos.find();
-    res.json(pagos);
+    usuarios = await Usuario.find();
+    res.json(usuarios);
 }
 
-usuarioCtrl.getUsuario = async (req, res) => {
-    const pagos = await Pagos.findById(req.params.id);
-    res.json(pagos);
+usuarioCtrl.getUsuarioId = async (req, res) => {
+    const usuario = await Usuario.findById(req.params.id);
+    res.json(usuario);
 }
 
 usuarioCtrl.createUsuario = async (req, res)=>{
@@ -22,7 +22,7 @@ usuarioCtrl.createUsuario = async (req, res)=>{
 }
 
 usuarioCtrl.editUsuario = async (req, res) => {
-    const vUsuario =  new Pagos (req.body);
+    const vUsuario =  new Usuario (req.body);
 
     await Usuario.findByIdAndUpdate(req.params.id, {$set: vUsuario}, {new: true});
     res.json({

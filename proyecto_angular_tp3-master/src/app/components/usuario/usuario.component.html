@@ -1,0 +1,100 @@
+<form class="card" #formusuario="ngForm">
+    <div class="card-header text-center" > --Formulario de Usuario--</div>
+      <div class="card-body">
+        <div class="row form-group">
+            <label class="col-sm-12 col-md-4" >Usuario:</label>
+            <select name="nemail" id="email" class="form-control col-sm-12 col-md-8" required [(ngModel)]= "usuario.perfil" (change)="seleccionPerfil()" #perfilValidate="ngModel">
+                <option value="s" selected>--Seleccione Tipo de Usuario--</option>
+                <option value="afiliado">Afiliado</option>
+                <option value="admin">Administrativo</option>
+                <option value="gerente">Gerente</option>
+            </select>
+            <div *ngIf="perfilValidate.invalid && (perfilValidate.dirty || perfilValidate.touched)" class="alert alert-danger">
+                <div *ngIf="perfilValidate.errors.required">
+                    Tipo de usuario es un campo requerido
+                </div>
+              </div>
+          </div>
+          <div class="row form-group" *ngIf="mostrarSelect">
+            <label class="col-sm-12 col-md-4">Listado de emails afiliados:</label>
+            <select name="emailSelect" id="emailId" class="form-control col-sm-12 col-md-6" required [(ngModel)]= "usuario.usuarioEmail">
+                <option>--Seleccione el email--</option>
+            </select>
+            <button class="button col-sm-12 col-md-2" (click)="cargarEmailSelect()">Cargar Emails</button>
+          </div>
+        <div class="row form-group" *ngIf="mostrarPassword">
+          <label class="col-sm-12 col-md-4"><i class="fas fa-at"></i> Usuario (Email):</label>
+          <input class="form-control col-sm-12 col-md-8" type="text" placeholder="Ingrese el email" name="txtusuario" required [(ngModel)] = "usuario.usuarioEmail" #usuarioValidate="ngModel"/>
+          <div *ngIf="usuarioValidate.invalid && (usuarioValidate.dirty || usuarioValidate.touched)" class="alert alert-danger">
+            <div *ngIf="usuarioValidate.errors.required">
+                El email es un campo requerido!
+            </div>
+          </div>
+        </div>
+      <div class="row form-group">
+        <label class="col-sm-12 col-md-4" > Contraseña: </label>
+        <input class="form-control col-sm-12 col-md-8" type="password" placeholder="Ingrese la contraseña" name="txtnombreOrganizacion" required [(ngModel)] = "usuario.password" #nombreorganizacion="ngModel"/>
+        <div *ngIf="nombreorganizacion.invalid && (nombreorganizacion.dirty || nombreorganizacion.touched)" class="alert alert-danger">
+          <div *ngIf="nombreorganizacion.errors.required">
+              La contraseña es un campo requerido!
+          </div>
+        </div>
+      </div>
+      <div class="row form-group">
+        <button type="button" class="btn btn-primary" style="margin-right: 20px;" (click)="crearUsuario()" [disabled]="!formusuario.form.valid"><i class="fas fa-paper-plane"></i> Agregar</button>           
+      </div>
+    </div>
+</form>
+
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel1">Usuario</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <div class="row form-group">
+                <label class="col-sm-12 col-md-4" > Contraseña: </label>
+                <input class="form-control col-sm-12 col-md-8" type="password" placeholder="Ingrese la contraseña" name="txtnombreOrganizacion" required [(ngModel)] = "usuarioSeleccionado.password" #nombreorganizacion="ngModel"/>
+                <div *ngIf="nombreorganizacion.invalid && (nombreorganizacion.dirty || nombreorganizacion.touched)" class="alert alert-danger">
+                  <div *ngIf="nombreorganizacion.errors.required">
+                      La contraseña es un campo requerido!
+                  </div>
+                </div>
+              </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="button" data-dismiss="modal">Cerrar</button>
+          <button type="button" class="button" data-dismiss="modal" (click)="modificarUsuario()">Modificar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th scope="row">Usuario</th>
+            <th>Contraseña</th>
+            <th>Activo</th>
+            <th>Perfil</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let item of usuarios">
+            <td scope="row">{{item.usuarioEmail}}</td>
+            <td>{{item.password}}</td>
+            <td>{{item.activo}}</td>
+            <td>{{item.perfil}}</td>
+            <td>
+                <button class="button" (click)="seleccionarUsuario(item)" data-toggle="modal" data-target="#exampleModal1"><i class="fas fa-edit"></i></button>
+                <button class="button" id="borrarUsuario" (click)="borrarUsuario(item)"><i class="fas fa-trash-alt"></i></button>
+            </td>
+        </tr>
+    </tbody>
+</table>

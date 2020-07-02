@@ -6,7 +6,7 @@ noticiasCtrl.getNoticias = async (req, res) => {
     res.json(noticias);
 }
 
-noticiasCtrl.getNoticias = async (req, res) => {
+noticiasCtrl.getNoticiaId = async (req, res) => {
     const noticias = await Noticias.findById(req.params.id);
     res.json(noticias);
 }

@@ -12,6 +12,8 @@ export class UsuarioService {
   userLoggedIn: boolean = false;
   userLogged: Usuario;
 
+  urlBase: string = "http://localhost:3000/api/usuarios/";
+  urlAfi: string = "http://localhost:3000/api/afiliados/"; 
 
   constructor(private _http:HttpClient) { }
 
@@ -35,6 +37,42 @@ export class UsuarioService {
     this.userLoggedIn = false;  
   }  
 
+  public agregarUsuario(usu: Usuario): Observable<any>{
+    const HttpOptions = {
+      headers: new HttpHeaders({
+        "Content-Type": "application/json"
+      })
+    }
+    var body = JSON.stringify(usu);
+    return this._http.post(this.urlBase,body,HttpOptions);
+  }
 
+  public obtenerUsuario(): Observable<any>{
+    const HttpOptions = {
+      headers: new HttpHeaders({
+      })
+    }
+    return this._http.get(this.urlBase,HttpOptions);
+  }
+
+  public obtenerAfiliados(): Observable<any>{
+    const HttpOptions = {
+      headers: new HttpHeaders({
+      })
+    }
+    return this._http.get(this.urlAfi,HttpOptions);
+  }
+
+  updateUsuario(usu: Usuario):Observable<any>{
+
+    const httpOptions = {
+      headers: new HttpHeaders({
+        "Content-Type": "application/json"
+      })
+    };
+    var body = JSON.stringify(usu);
+    return this._http.put(this.urlBase + usu._id , body , httpOptions );    
+
+  }
 
 }

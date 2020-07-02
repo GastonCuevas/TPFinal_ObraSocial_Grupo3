@@ -1,12 +1,13 @@
 const Afiliado = require('../models/afiliado'); 
 
 const afiliadoCtrl = {}
+
 afiliadoCtrl.getAfiliado = async (req, res) => {
-    adelantos = await Afiliado.find();
+    afiliados = await Afiliado.find();
     res.json(afiliados);
 }
 
-afiliadoCtrl.getAfiliado = async (req, res) => {
+afiliadoCtrl.getAfiliadoId = async (req, res) => {
     const afiliado = await Afiliado.findById(req.params.id);
     res.json(afiliado);
 }

@@ -6,7 +6,7 @@ const usuarioCtrl = require('./../controllers/usuario.controller');
 
 // definiendo rutas
 router.get('/', usuarioCtrl.getUsuario);
-router.get('/:id', usuarioCtrl.getUsuario);
+router.get('/:id', usuarioCtrl.getUsuarioId);
 router.put('/:id', usuarioCtrl.editUsuario);
 router.delete('/:id', usuarioCtrl.deleteUsuario);
 router.post('/', usuarioCtrl.createUsuario);

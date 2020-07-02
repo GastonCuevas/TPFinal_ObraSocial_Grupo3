@@ -6,7 +6,7 @@ novedadesCtrl.getNovedades = async (req, res) => {
     res.json(novedades);
 }
 
-novedadesCtrl.getNovedades = async (req, res) => {
+novedadesCtrl.getNovedadesId = async (req, res) => {
     const novedades = await Novedades.findById(req.params.id);
     res.json(novedades);
 }

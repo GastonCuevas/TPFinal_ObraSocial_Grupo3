@@ -6,7 +6,7 @@ serviciosCtrl.getServicios = async (req, res) => {
     res.json(servicios);
 }
 
-serviciosCtrl.getServicios = async (req, res) => {
+serviciosCtrl.getServiciosId = async (req, res) => {
     const servicios = await Servicios.findById(req.params.id);
     res.json(servicios);
 }
