@@ -6,7 +6,7 @@
             <select name="nemail" id="email" class="form-control col-sm-12 col-md-8" required [(ngModel)]= "usuario.perfil" (change)="seleccionPerfil()" #perfilValidate="ngModel">
                 <option value="s" selected>--Seleccione Tipo de Usuario--</option>
                 <option value="afiliado">Afiliado</option>
-                <option value="admin">Administrativo</option>
+                <option value="administrativo">Administrativo</option>
                 <option value="gerente">Gerente</option>
             </select>
             <div *ngIf="perfilValidate.invalid && (perfilValidate.dirty || perfilValidate.touched)" class="alert alert-danger">
@@ -17,10 +17,9 @@
           </div>
           <div class="row form-group" *ngIf="mostrarSelect">
             <label class="col-sm-12 col-md-4">Listado de emails afiliados:</label>
-            <select name="emailSelect" id="emailId" class="form-control col-sm-12 col-md-6" required [(ngModel)]= "usuario.usuarioEmail">
-                <option>--Seleccione el email--</option>
+            <select name="emailSelect" id="emailId" class="form-control col-sm-12 col-md-8" required [(ngModel)]= "usuario.usuarioEmail" *ngFor="let item of emails">
+                <option>{{item}}</option>
             </select>
-            <button class="button col-sm-12 col-md-2" (click)="cargarEmailSelect()">Cargar Emails</button>
           </div>
         <div class="row form-group" *ngIf="mostrarPassword">
           <label class="col-sm-12 col-md-4"><i class="fas fa-at"></i> Usuario (Email):</label>

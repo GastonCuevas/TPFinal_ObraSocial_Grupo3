@@ -50,15 +50,6 @@ export class HeaderComponent implements OnInit {
                 console.log("Socio:", this.esSocio);
                 break;
               }
-              case"administrador":{
-                this.esAdministrador = true;
-                console.log("es", tipo);
-                console.log("Administrativo:", this.esAdministrativo);
-                console.log("Administrador:", this.esAdministrador);
-                console.log("Gerente:", this.esGerente);
-                console.log("Socio:", this.esSocio);
-                break;
-              }
               case"gerente":{
                 this.esGerente = true;
                 console.log("es", tipo);
@@ -68,8 +59,8 @@ export class HeaderComponent implements OnInit {
                 console.log("Socio:", this.esSocio);
                 break;
               }
-              case"socio":{
-                this.esGerente = true;
+              case"afiliado":{
+                this.esSocio = true;
                 console.log("es", tipo);
                 console.log("Administrativo:", this.esAdministrativo);
                 console.log("Administrador:", this.esAdministrador);

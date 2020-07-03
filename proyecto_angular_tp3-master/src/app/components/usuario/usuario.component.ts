@@ -15,6 +15,8 @@ export class UsuarioComponent implements OnInit {
 
   usuarios: Array<Usuario>;
   emails: Array<string> = [];
+  emailsUsuarios: Array<string> = [];
+  band: Boolean = false;
 
   mostrarPassword: boolean = true;
   mostrarSelect: boolean = false;
@@ -24,22 +26,31 @@ export class UsuarioComponent implements OnInit {
     this.usuarioSeleccionado = new Usuario();
     this.usuarios = new Array<Usuario>();
     this.cargarTabla();
+    this.cargarEmails();
+    this.cargarUsuarios();
   }
 
   public crearUsuario(){
 
     this.usuario.activo = true;
+    this.verificarUsuario();
 
-    this.usuarioService.agregarUsuario(this.usuario).subscribe(
-      (result)=>{
-        alert("Usuario guardado");
-        this.cargarTabla();
-        this.usuario = new Usuario();
-      },
-      (error)=>{
-        console.log(error);
-      }
-    )
+    if(this.band==false){
+      this.usuarioService.agregarUsuario(this.usuario).subscribe(
+        (result)=>{
+          alert("Usuario guardado");
+          this.cargarTabla();
+          this.usuario = new Usuario();
+        },
+        (error)=>{
+          console.log(error);
+        }
+      )
+    }else{
+      alert("Este email ya esta registrado");
+    }
+
+    
   }
 
   public seleccionarUsuario(usu: Usuario){
@@ -92,24 +103,37 @@ export class UsuarioComponent implements OnInit {
     );
   }
 
-  public cargarEmailSelect() {
-    this.emails = new Array<string>();
-    this.cargarEmails();
-    // Ordena el Array Alfabeticamente, es muy facil ;)):
-    this.emails.sort();
-    this.addOptions("emailSelect", this.emails);
-   }
-   
-   // Rutina para agregar opciones a un <select>
-   public addOptions(domElement, array) {
-    var select = document.getElementsByName(domElement)[0];
-    console.log(array)
-    for(var i in array)
-            { 
-              console.log(1);
-                document.getElementById("emailId").innerHTML += "<option value='"+array[i]+"'>"+array[i]+"</option>";
-            }
-   }
+  public verificarUsuario(){
+
+    this.band = false;
+
+    this.cargarUsuarios();
+
+      for(var i = 0; i<this.emailsUsuarios.length; i++){
+        if(this.usuario.usuarioEmail == this.emailsUsuarios[i]){
+            this.band = true;
+        }
+      }
+
+  }
+
+
+  public cargarUsuarios(){
+    this.usuarioService.obtenerUsuario().subscribe(
+      (result)=>{
+        var usu: Usuario = new Usuario();
+        result.forEach(element => {
+          Object.assign(usu, element);
+          this.emailsUsuarios.push(usu.usuarioEmail);
+          console.log(this.emailsUsuarios.toString())
+          usu = new Usuario();
+        });
+      },
+      (error)=>{
+        console.log(error);
+      }
+    );
+  }
 
   public seleccionPerfil(){
     if(this.usuario.perfil == "afiliado"){
