@@ -12,6 +12,8 @@ import { FooterComponent } from './components/footer/footer.component';
 import { HomeComponent } from './components/home/home.component';
 import { AbouthUsComponent } from './components/abouth-us/abouth-us.component';
 import { UsuarioComponent } from './components/usuario/usuario.component';
+import { AfiliadoComponent } from './components/afiliado/afiliado.component';
+import { AlifeFileToBase64Module } from 'alife-file-to-base64';
  
 @NgModule({
   declarations: [
@@ -22,6 +24,7 @@ import { UsuarioComponent } from './components/usuario/usuario.component';
     FooterComponent,
     AbouthUsComponent,
     UsuarioComponent,
+    AfiliadoComponent,
   ],
   imports: [
     BrowserModule,
@@ -30,6 +33,7 @@ import { UsuarioComponent } from './components/usuario/usuario.component';
     ReactiveFormsModule,
     NgxDataTableModule,
     HttpClientModule,
+    AlifeFileToBase64Module,
   ],
   providers: [],
   bootstrap: [AppComponent]

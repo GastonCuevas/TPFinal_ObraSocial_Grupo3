@@ -1,0 +1,178 @@
+<form class="card" #formafiliado="ngForm">
+    <div class="card-header text-center"> --Formulario de Afiliado--</div>
+    <div class="card-body">
+        
+
+        <div class="row form-group" >
+            <label class="col-sm-12 col-md-4">Nombre:</label>
+            <input class="form-control col-sm-12 col-md-8" type="text" placeholder="Ingrese el nombre" name="txtnombre"
+                required [(ngModel)]="afiliado.nombres" #nombreValidate="ngModel" />
+            <div *ngIf="nombreValidate.invalid && (nombreValidate.dirty || nombreValidate.touched)"
+                class="alert alert-danger">
+                <div *ngIf="nombreValidate.errors.required">
+                    El nombre es un campo requerido!
+                </div>
+            </div>
+        </div>
+        <div class="row form-group" >
+            <label class="col-sm-12 col-md-4">Apellido:</label>
+            <input class="form-control col-sm-12 col-md-8" type="text" placeholder="Ingrese el apellido" name="txtapellido"
+                required [(ngModel)]="afiliado.apellido" #apellidoValidate="ngModel" />
+            <div *ngIf="apellidoValidate.invalid && (apellidoValidate.dirty || apellidoValidate.touched)"
+                class="alert alert-danger">
+                <div *ngIf="apellidoValidate.errors.required">
+                    El apellido es un campo requerido!
+                </div>
+            </div>
+        </div>
+        <div class="row form-group" >
+            <label class="col-sm-12 col-md-4">DNI:</label>
+            <input class="form-control col-sm-12 col-md-8" type="number" placeholder="Ingrese el DNI" name="txtdni"
+                required [(ngModel)]="afiliado.dni" #dniValidate="ngModel" />
+            <div *ngIf="dniValidate.invalid && (dniValidate.dirty || dniValidate.touched)"
+                class="alert alert-danger">
+                <div *ngIf="dniValidate.errors.required">
+                    El dni es un campo requerido!
+                </div>
+            </div>
+        </div>
+        <div class="row form-group" >
+            <label class="col-sm-12 col-md-4">e-mail:</label>
+            <input class="form-control col-sm-12 col-md-8" type="email" placeholder="Ingrese el e-mail" name="txtemail"
+                required [(ngModel)]="afiliado.email" #emailValidate="ngModel" />
+            <div *ngIf="emailValidate.invalid && (emailValidate.dirty || emailValidate.touched)"
+                class="alert alert-danger">
+                <div *ngIf="emailValidate.errors.required">
+                    El email es un campo requerido!
+                </div>
+            </div>
+        </div>
+        <div class="row form-group" >
+            <label class="col-sm-12 col-md-4">Telefono:</label>
+            <input class="form-control col-sm-12 col-md-8" type="number" placeholder="Ingrese el telefono" name="txttelefono"
+                required [(ngModel)]="afiliado.telefono" #telefonoValidate="ngModel" />
+            <div *ngIf="telefonoValidate.invalid && (telefonoValidate.dirty || telefonoValidate.touched)"
+                class="alert alert-danger">
+                <div *ngIf="telefonoValidate.errors.required">
+                    El telefono es un campo requerido!
+                </div>
+            </div>
+        </div>
+        <div class="row form-group" >
+            <label class="col-sm-12 col-md-4">Imagen:</label>
+            <input type="file" alife-file-to-base64 (onFileChanged)="onFileChanges($event)" name="imginput"required />
+            <img style="margin-left: 200px;" src="{{afiliado.imagen}}" height="100px" width="100px">
+        </div>
+
+        <div class="row form-group">
+            <button type="button" class="btn btn-primary" style="margin-right: 20px;" (click)="crearAfiliado()"
+                [disabled]="!formafiliado.form.valid"><i class="fas fa-paper-plane"></i> Agregar</button>
+        </div>
+    </div>
+</form>
+
+<!-- Modal -->
+
+<div class="modal fade" id="exampleModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel1">Afiliado</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>  
+
+
+            <div class="modal-body">
+                <div class="row form-group" >
+                    <label class="col-sm-12 col-md-4">Nombre:</label>
+                    <input class="form-control col-sm-12 col-md-8" type="text" placeholder="Ingrese el nombre" name="txtnombre"
+                        required [(ngModel)]="afiliadoSeleccionado.nombres" #nombreValidate2="ngModel" />
+                    <div *ngIf="nombreValidate2.invalid && (nombreValidate2.dirty || nombreValidate2.touched)"
+                        class="alert alert-danger">
+                        <div *ngIf="nombreValidate2.errors.required">
+                            El nombre es un campo requerido!
+                        </div>
+                    </div>
+                </div>
+                <div class="row form-group" >
+                    <label class="col-sm-12 col-md-4">Apellido:</label>
+                    <input class="form-control col-sm-12 col-md-8" type="text" placeholder="Ingrese el apellido" name="txtapellido"
+                        required [(ngModel)]="afiliadoSeleccionado.apellido" #apellidoValidate2="ngModel" />
+                    <div *ngIf="apellidoValidate2.invalid && (apellidoValidate2.dirty || apellidoValidate2.touched)"
+                        class="alert alert-danger">
+                        <div *ngIf="apellidoValidate2.errors.required">
+                            El apellido es un campo requerido!
+                        </div>
+                    </div>
+                </div>
+                <div class="row form-group" >
+                    <label class="col-sm-12 col-md-4">DNI:</label>
+                    <input class="form-control col-sm-12 col-md-8" type="number" placeholder="Ingrese el DNI" name="txtdni"
+                        required [(ngModel)]="afiliadoSeleccionado.dni" #dniValidate2="ngModel" />
+                    <div *ngIf="dniValidate2.invalid && (dniValidate2.dirty || dniValidate2.touched)"
+                        class="alert alert-danger">
+                        <div *ngIf="dniValidate2.errors.required">
+                            El dni es un campo requerido!
+                        </div>
+                    </div>
+                </div>
+                <div class="row form-group" >
+                    <label class="col-sm-12 col-md-4">Telefono:</label>
+                    <input class="form-control col-sm-12 col-md-8" type="number" placeholder="Ingrese el telefono" name="txttelefono"
+                        required [(ngModel)]="afiliadoSeleccionado.telefono" #telefonoValidate2="ngModel" />
+                    <div *ngIf="telefonoValidate2.invalid && (telefonoValidate2.dirty || telefonoValidate2.touched)"
+                        class="alert alert-danger">
+                        <div *ngIf="telefonoValidate2.errors.required">
+                            El telefono es un campo requerido!
+                        </div>
+                    </div>
+                </div>
+                <div class="row form-group" >
+                    <label class="col-sm-12 col-md-4">Imagen:</label>
+                    <input type="file" alife-file-to-base64 (onFileChanged)="onFileChanges2($event)" name="imginput2"required />
+                    <img style="margin-left: 200px;" src="{{afiliadoSeleccionado.imagen}}" height="100px" width="100px">
+                </div>
+    
+            </div>
+            
+
+            <div class="modal-footer">
+                <button type="button" class="button" data-dismiss="modal">Cerrar</button>
+                <button type="button" class="button" data-dismiss="modal"
+                    (click)="modificarAfiliado()">Modificar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th scope="row">Apellido y nombre</th>
+            <th>DNI</th>
+            <th>e-mail</th>
+            <th>Telefono</th>
+            <th>Imagen</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let item of afiliados">
+            <td scope="row">{{item.apellido}}, {{item.nombres}}</td>
+            <td>{{item.dni}}</td>
+            <td>{{item.email}}</td>
+            <td>{{item.telefono}}</td>
+            <td><img src="{{item.imagen}}"  width="70px" height="70px"></td>
+            <td>
+                <button class="button" (click)="seleccionarAfiliado(item)" data-toggle="modal"
+                    data-target="#exampleModal1"><i class="fas fa-edit"></i></button>
+                <button class="button" id="borrarUsuario" (click)="borrarAfiliado(item)"><i
+                        class="fas fa-trash-alt"></i></button>
+            </td>
+        </tr>
+    </tbody>
+</table>
