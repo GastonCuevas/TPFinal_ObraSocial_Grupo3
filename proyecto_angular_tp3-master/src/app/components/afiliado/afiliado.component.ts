@@ -21,7 +21,7 @@ export class AfiliadoComponent implements OnInit {
   mostrarPassword: boolean = true;
   mostrarSelect: boolean = false;
 
-  constructor(private afiliadoService: AfiliadoService, private usuarioService: UsuarioService) {
+  constructor(private afiliadoService: AfiliadoService, public usuarioService: UsuarioService) {
     this.afiliado = new Afiliado();
     this.afiliadoSeleccionado = new Afiliado();
     this.afiliados = new Array<Afiliado>();

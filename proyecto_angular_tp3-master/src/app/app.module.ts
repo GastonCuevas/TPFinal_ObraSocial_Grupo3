@@ -14,6 +14,7 @@ import { AbouthUsComponent } from './components/abouth-us/abouth-us.component';
 import { UsuarioComponent } from './components/usuario/usuario.component';
 import { AfiliadoComponent } from './components/afiliado/afiliado.component';
 import { AlifeFileToBase64Module } from 'alife-file-to-base64';
+import { UsuarioService } from './services/usuario.service';
  
 @NgModule({
   declarations: [
@@ -35,7 +36,7 @@ import { AlifeFileToBase64Module } from 'alife-file-to-base64';
     HttpClientModule,
     AlifeFileToBase64Module,
   ],
-  providers: [],
+  providers: [UsuarioService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

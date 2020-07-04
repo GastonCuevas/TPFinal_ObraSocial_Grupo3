@@ -1,3 +1,4 @@
+<div *ngIf="usuarioService.userLoggedIn && usuarioService.userLogged.perfil == 'administrativo'">
 <form class="card" #formafiliado="ngForm">
     <div class="card-header text-center"> --Formulario de Afiliado--</div>
     <div class="card-body">
@@ -176,3 +177,4 @@
         </tr>
     </tbody>
 </table>
+</div>

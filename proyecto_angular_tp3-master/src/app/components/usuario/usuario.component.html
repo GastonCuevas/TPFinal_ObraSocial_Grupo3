@@ -1,3 +1,4 @@
+<div *ngIf="usuarioService.userLoggedIn && (usuarioService.userLogged.perfil == 'gerente' || usuarioService.userLogged.perfil == 'administrativo')">
 <form class="card" #formusuario="ngForm">
     <div class="card-header text-center" > --Formulario de Usuario--</div>
       <div class="card-body">
@@ -6,8 +7,8 @@
             <select name="nemail" id="email" class="form-control col-sm-12 col-md-8" required [(ngModel)]= "usuario.perfil" (change)="seleccionPerfil()" #perfilValidate="ngModel">
                 <option value="s" selected>--Seleccione Tipo de Usuario--</option>
                 <option value="afiliado">Afiliado</option>
-                <option value="administrativo">Administrativo</option>
-                <option value="gerente">Gerente</option>
+                <option *ngIf="usuarioService.userLogged.perfil == 'gerente'" value="administrativo">Administrativo</option>
+                <option *ngIf="usuarioService.userLogged.perfil == 'gerente'" value="gerente">Gerente</option>
             </select>
             <div *ngIf="perfilValidate.invalid && (perfilValidate.dirty || perfilValidate.touched)" class="alert alert-danger">
                 <div *ngIf="perfilValidate.errors.required">
@@ -15,12 +16,15 @@
                 </div>
               </div>
           </div>
-          <div class="row form-group" *ngIf="mostrarSelect">
-            <label class="col-sm-12 col-md-4">Listado de emails afiliados:</label>
-            <select name="emailSelect" id="emailId" class="form-control col-sm-12 col-md-8" required [(ngModel)]= "usuario.usuarioEmail" *ngFor="let item of emails">
-                <option>{{item}}</option>
-            </select>
+          <div *ngIf="mostrarSelect">
+            <div class="row form-group">
+              <label class="col-sm-12 col-md-4">Listado de emails afiliados:</label>
+              <select name="emailSelect" id="emailId" class="form-control col-sm-12 col-md-8" required [(ngModel)]= "usuario.usuarioEmail" >
+                  <option *ngFor="let item of emails">{{item}}</option>
+              </select>
+            </div>
           </div>
+          
         <div class="row form-group" *ngIf="mostrarPassword">
           <label class="col-sm-12 col-md-4"><i class="fas fa-at"></i> Usuario (Email):</label>
           <input class="form-control col-sm-12 col-md-8" type="text" placeholder="Ingrese el email" name="txtusuario" required [(ngModel)] = "usuario.usuarioEmail" #usuarioValidate="ngModel"/>
@@ -74,7 +78,7 @@
     </div>
   </div>
 
-<table class="table table-striped">
+<table class="table table-striped" *ngIf="usuarioService.userLogged.perfil == 'gerente'">
     <thead>
         <tr>
             <th scope="row">Usuario</th>
@@ -97,3 +101,30 @@
         </tr>
     </tbody>
 </table>
+
+<table class="table table-striped" *ngIf="usuarioService.userLogged.perfil == 'administrativo'">
+  <thead>
+      <tr>
+          <th scope="row">Usuario</th>
+          <th>Contraseña</th>
+          <th>Activo</th>
+          <th>Perfil</th>
+          <th>Acciones</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr *ngFor="let item of usuarios">
+          <td scope="row"><div *ngIf="item.perfil == 'afiliado'">{{item.usuarioEmail}}</div></td>
+          <td><div *ngIf="item.perfil == 'afiliado'">{{item.password}}</div></td>
+          <td><div *ngIf="item.perfil == 'afiliado'">{{item.activo}}</div></td>
+          <td><div *ngIf="item.perfil == 'afiliado'">{{item.perfil}}</div></td>
+          <td>
+            <div *ngIf="item.perfil == 'afiliado'">
+              <button class="button" (click)="seleccionarUsuario(item)" data-toggle="modal" data-target="#exampleModal1"><i class="fas fa-edit"></i></button>
+              <button class="button" id="borrarUsuario" (click)="borrarUsuario(item)"><i class="fas fa-trash-alt"></i></button>
+            </div>  
+          </td>
+      </tr>
+  </tbody>
+</table>
+</div>

@@ -21,7 +21,7 @@ export class UsuarioComponent implements OnInit {
   mostrarPassword: boolean = true;
   mostrarSelect: boolean = false;
 
-  constructor(private usuarioService: UsuarioService) { 
+  constructor(public usuarioService: UsuarioService) { 
     this.usuario = new Usuario();
     this.usuarioSeleccionado = new Usuario();
     this.usuarios = new Array<Usuario>();
