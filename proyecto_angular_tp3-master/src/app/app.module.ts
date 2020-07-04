@@ -15,6 +15,10 @@ import { UsuarioComponent } from './components/usuario/usuario.component';
 import { AfiliadoComponent } from './components/afiliado/afiliado.component';
 import { AlifeFileToBase64Module } from 'alife-file-to-base64';
 import { UsuarioService } from './services/usuario.service';
+
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ToastrModule } from 'ngx-toastr';
+
  
 @NgModule({
   declarations: [
@@ -35,6 +39,8 @@ import { UsuarioService } from './services/usuario.service';
     NgxDataTableModule,
     HttpClientModule,
     AlifeFileToBase64Module,
+    BrowserAnimationsModule,
+    ToastrModule.forRoot(),
   ],
   providers: [UsuarioService],
   bootstrap: [AppComponent]

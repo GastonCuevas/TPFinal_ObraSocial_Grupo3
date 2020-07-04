@@ -3,6 +3,7 @@ import { Usuario } from 'src/app/models/usuario';
 import { UsuarioService } from 'src/app/services/usuario.service';
 import { Afiliado } from 'src/app/models/afiliado';
 import { AfiliadoService } from 'src/app/services/afiliado.service';
+import { ToastrService} from 'ngx-toastr';
 
 @Component({
   selector: 'app-afiliado',
@@ -21,7 +22,7 @@ export class AfiliadoComponent implements OnInit {
   mostrarPassword: boolean = true;
   mostrarSelect: boolean = false;
 
-  constructor(private afiliadoService: AfiliadoService, public usuarioService: UsuarioService) {
+  constructor(private afiliadoService: AfiliadoService, public usuarioService: UsuarioService,private _toastr:ToastrService) {
     this.afiliado = new Afiliado();
     this.afiliadoSeleccionado = new Afiliado();
     this.afiliados = new Array<Afiliado>();
@@ -29,6 +30,10 @@ export class AfiliadoComponent implements OnInit {
     this.usuarios = new Array<Usuario>();
     this.cargarTabla();
     this.cargarEmails();
+  }
+
+  mensajeExito(){
+    this._toastr.success("El afiliado a sido cargado correctamente", "Exito");
   }
 
   ngOnInit(): void {

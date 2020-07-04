@@ -44,7 +44,7 @@
         </div>
       </div>
       <div class="row form-group">
-        <button type="button" class="btn btn-primary" style="margin-right: 20px;" (click)="crearUsuario()" [disabled]="!formusuario.form.valid"><i class="fas fa-paper-plane"></i> Agregar</button>           
+        <button type="button" class="btn btn-primary" style="margin-right: 20px;" (click)="crearUsuario()" (click)="mensajeExito()" [disabled]="!formusuario.form.valid"><i class="fas fa-paper-plane"></i> Agregar</button>           
       </div>
     </div>
 </form>

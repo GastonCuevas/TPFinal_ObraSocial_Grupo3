@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Usuario } from 'src/app/models/usuario';
 import { UsuarioService } from 'src/app/services/usuario.service';
 import { Afiliado } from 'src/app/models/afiliado';
+import { ToastrService} from 'ngx-toastr';
 
 @Component({
   selector: 'app-usuario',
@@ -21,7 +22,7 @@ export class UsuarioComponent implements OnInit {
   mostrarPassword: boolean = true;
   mostrarSelect: boolean = false;
 
-  constructor(public usuarioService: UsuarioService) { 
+  constructor(public usuarioService: UsuarioService, private _toastr:ToastrService) { 
     this.usuario = new Usuario();
     this.usuarioSeleccionado = new Usuario();
     this.usuarios = new Array<Usuario>();
@@ -160,6 +161,10 @@ export class UsuarioComponent implements OnInit {
         console.log(error);
       }
     )
+  }
+
+  mensajeExito(){
+    this._toastr.success("El usuario a sido cargado correctamente", "Exito");
   }
 
   ngOnInit(): void {
