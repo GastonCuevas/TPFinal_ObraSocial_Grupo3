@@ -22,13 +22,13 @@
                       <a class="nav-link" [routerLink]="['novedad']">Novedades</a>
                     </li>
 
-                    <li class="nav-item dropdown active" *ngIf="esAdministrador && logIn" routerLinkActive="active">
+                    <li class="nav-item dropdown active" *ngIf="esGerente && logIn" routerLinkActive="active">
                       <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Administrador<span class="sr-only">(current)</span>
                       </a>
                       <div class="dropdown-menu menubasico" aria-labelledby="navbarDropdown">
                         <a class="dropdown-item" [routerLink]="['usuario']">Usuarios</a>
-                        <a class="dropdown-item" [routerLink]="['socio']">Afiliados</a>          
+                        <a class="dropdown-item" [routerLink]="['afiliado']">Afiliados</a>          
                         <a class="dropdown-item" [routerLink]="['servicio']">Servicios</a>          
                         <a class="dropdown-item" [routerLink]="['noticia']">Noticias</a>          
                         <a class="dropdown-item" [routerLink]="['novedad']">Novedades</a>

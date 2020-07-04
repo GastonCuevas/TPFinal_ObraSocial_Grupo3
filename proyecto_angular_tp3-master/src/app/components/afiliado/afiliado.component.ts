@@ -162,12 +162,14 @@ export class AfiliadoComponent implements OnInit {
 
   }
   public onFileChanges(files) {
-    console.log(files);
-    this.afiliado.imagen = files[0].base64;
+    if(files!=null){
+      this.afiliado.imagen = files[0].base64;
+    }
   }
   public onFileChanges2(files) {
-    console.log(files);
-    this.afiliadoSeleccionado.imagen = files[0].base64;
+    if(files!=null){
+      this.afiliadoSeleccionado.imagen = files[0].base64;
+    }
   }
 
   public cargarTabla() {

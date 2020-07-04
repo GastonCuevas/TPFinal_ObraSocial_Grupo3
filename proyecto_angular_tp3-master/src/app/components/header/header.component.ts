@@ -14,7 +14,6 @@ export class HeaderComponent implements OnInit {
   usuario = "";
   clave = "";
   esAdministrativo = false;
-  esAdministrador = false;
   esGerente = false;
   esSocio = false;
   constructor(
@@ -42,28 +41,31 @@ export class HeaderComponent implements OnInit {
             console.log("tipo:", tipo)
             switch(tipo){
               case"administrativo":{
+                this.esSocio = false;
+                this.esGerente = false;
                 this.esAdministrativo = true;
                 console.log("es", tipo);
                 console.log("Administrativo:", this.esAdministrativo);
-                console.log("Administrador:", this.esAdministrador);
                 console.log("Gerente:", this.esGerente);
                 console.log("Socio:", this.esSocio);
                 break;
               }
               case"gerente":{
+                this.esSocio = false;
                 this.esGerente = true;
+                this.esAdministrativo = false;
                 console.log("es", tipo);
                 console.log("Administrativo:", this.esAdministrativo);
-                console.log("Administrador:", this.esAdministrador);
                 console.log("Gerente:", this.esGerente);
                 console.log("Socio:", this.esSocio);
                 break;
               }
               case"afiliado":{
                 this.esSocio = true;
+                this.esGerente = false;
+                this.esAdministrativo = false;
                 console.log("es", tipo);
                 console.log("Administrativo:", this.esAdministrativo);
-                console.log("Administrador:", this.esAdministrador);
                 console.log("Gerente:", this.esGerente);
                 console.log("Socio:", this.esSocio);
                 break;
