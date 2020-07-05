@@ -31,6 +31,27 @@ export class UsuarioComponent implements OnInit {
     this.cargarUsuarios();
   }
 
+  mensajeExitoCarga(){
+    this._toastr.success("El usuario ha sido cargado correctamente", "Exito");
+  }
+  mensajeExitoActivado(){
+    this._toastr.success("El usuario ha sido activado correctamente", "Exito");
+  }
+  mensajeExitoModificado(){
+    this._toastr.success("El usuario ha sido modificado correctamente", "Exito");
+  }
+  mensajeExitoEliminado(){
+    this._toastr.success("El usuario ha sido eliminado correctamente", "Exito");
+  }
+  mensajeFallaEmailRepetido(){
+    this._toastr.error("Este e-mail ya está registrado", "Falla");
+  }
+  mensajeFallaError(mensaje){
+    this._toastr.warning(mensaje);
+  }
+
+
+
   public crearUsuario(){
 
     this.usuario.activo = true;
@@ -39,16 +60,17 @@ export class UsuarioComponent implements OnInit {
     if(this.band==false){
       this.usuarioService.agregarUsuario(this.usuario).subscribe(
         (result)=>{
-          alert("Usuario guardado");
+          this.mensajeExitoCarga();
           this.cargarTabla();
           this.usuario = new Usuario();
         },
         (error)=>{
           console.log(error);
+          this.mensajeFallaError(error);
         }
       )
     }else{
-      alert("Este email ya esta registrado");
+      this.mensajeFallaEmailRepetido();
     }
 
     
@@ -63,12 +85,28 @@ export class UsuarioComponent implements OnInit {
 
     this.usuarioService.updateUsuario(usu).subscribe(
       (result)=>{
-        alert("Usuario inactivado");
+        this.mensajeExitoEliminado();
         usu = new Usuario();
         this.cargarTabla();
       },
       (error)=>{
         console.log(error);
+        this.mensajeFallaError(error);
+      }
+    );
+  }
+  public activarUsuario(usu: Usuario){
+    usu.activo = true;
+
+    this.usuarioService.updateUsuario(usu).subscribe(
+      (result)=>{
+        this.mensajeExitoActivado();
+        usu = new Usuario();
+        this.cargarTabla();
+      },
+      (error)=>{
+        console.log(error);
+        this.mensajeFallaError(error);
       }
     );
   }
@@ -76,12 +114,13 @@ export class UsuarioComponent implements OnInit {
   public modificarUsuario(){
     this.usuarioService.updateUsuario(this.usuarioSeleccionado).subscribe(
       (result)=>{
-        alert("Usuario actualizado");
+        this.mensajeExitoModificado();
         this.usuarioSeleccionado = new Usuario();
         this.cargarTabla();
       },
       (error)=>{
         console.log(error);
+        this.mensajeFallaError(error);
       }
     );
   }
@@ -100,6 +139,7 @@ export class UsuarioComponent implements OnInit {
       },
       (error)=>{
         console.log(error);
+        this.mensajeFallaError(error);
       }
     );
   }
@@ -132,6 +172,7 @@ export class UsuarioComponent implements OnInit {
       },
       (error)=>{
         console.log(error);
+        this.mensajeFallaError(error);
       }
     );
   }
@@ -159,13 +200,12 @@ export class UsuarioComponent implements OnInit {
       },
       (error)=>{
         console.log(error);
+        this.mensajeFallaError(error);
       }
     )
   }
 
-  mensajeExito(){
-    this._toastr.success("El usuario a sido cargado correctamente", "Exito");
-  }
+  
 
   ngOnInit(): void {
   }

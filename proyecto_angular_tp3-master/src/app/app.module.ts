@@ -18,6 +18,7 @@ import { UsuarioService } from './services/usuario.service';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
+import { NoticiaComponent } from './components/noticia/noticia.component';
 
  
 @NgModule({
@@ -30,6 +31,7 @@ import { ToastrModule } from 'ngx-toastr';
     AbouthUsComponent,
     UsuarioComponent,
     AfiliadoComponent,
+    NoticiaComponent
   ],
   imports: [
     BrowserModule,
@@ -40,7 +42,10 @@ import { ToastrModule } from 'ngx-toastr';
     HttpClientModule,
     AlifeFileToBase64Module,
     BrowserAnimationsModule,
-    ToastrModule.forRoot(),
+    ToastrModule.forRoot({
+      timeOut: 10000,
+      preventDuplicates: true,
+    }),
   ],
   providers: [UsuarioService],
   bootstrap: [AppComponent]

@@ -1,27 +1,126 @@
-<div class="container-fluid">                
-    <h3 class="text-center">Registro de Noticias</h3>    
+<div class="container-fluid" *ngIf="usuarioService.userLogged.perfil == 'administrativo'">
+    <h3 class="text-center">Registro de Noticias</h3>
     <div class="offset-lg-2 offset-md-2 col-md-8 col-lg-8 col-sm-12 col-12">
         <div class="card">
             <div class="card-header">
                 Redacción de Noticia
             </div>
             <div class="card-body formulario">
-                <form name="formulario-registro" method="post">
+                <form #formnoticia="ngForm">
                     <div class="form-group">
                         <label for="txtNombre">Título</label>
-                        <input type="text" class="form-control" id="txtNombre">                        
+                        <input type="text" class="form-control" name="txttitulo" id="txtNombre" required
+                            [(ngModel)]="noticia.titulo" #titulovalidate="ngModel">
+                        <div *ngIf="titulovalidate.invalid && (titulovalidate.dirty || titulovalidate.touched)"
+                            class="alert alert-danger">
+                            <div *ngIf="titulovalidate.errors.required">
+                                El título es un campo requerido!
+                            </div>
+                        </div>
                     </div>
                     <div class="form-group">
-                    <label for="txtDescrip">Descripción</label>
-                    <textarea rows="4" class="form-control" id="txtDescrip"></textarea>                    
+                        <label for="txtDescrip">Descripción</label>
+                        <textarea rows="4" class="form-control" id="txtDescrip" name="txtdescripcion" required
+                            [(ngModel)]="noticia.descripcion" #descripcionvalidate="ngModel"></textarea>
+                        <div *ngIf="descripcionvalidate.invalid && (descripcionvalidate.dirty || descripcionvalidate.touched)"
+                            class="alert alert-danger">
+                            <div *ngIf="descripcionvalidate.errors.required">
+                                La descripcíon de la noticia es un campo requerido!
+                            </div>
+                        </div>
                     </div>
+                    <div class="row form-group">
+                        <button type="button" class="boton degradado" style="margin-right: 20px;" (click)="crearNoticia()"  [disabled]="!formnoticia.form.valid"><i class="fas fa-paper-plane"></i> Agregar</button> 
+                        <button  type="reset" class="boton degradado" ><i class="fas fa-broom"></i> Limpiar</button>
+                    </div>
+                    
 
-                    <div class="row">
-                        <div class="boton"><input class="degradado" type="submit" value="Registrar"></div>
-                        <div class="boton"><input class="degradado" type="reset" value="Cancelar"></div>
-                    </div>
                 </form>
-            </div><!--fin card body-->
-        </div><!--fin tarjeta-->
+            </div>
+            <!--fin card body-->
+        </div>
+        <!--fin tarjeta-->
     </div>
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="row">Título</th>
+                <th>Descripción</th>
+                <th>Fecha</th>
+                <th>Autor</th>
+                <th>Vigente</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let item of noticias">
+                <td scope="row">{{item.titulo}}</td>
+                <td>{{item.descripcion}}</td>
+                <td>{{item.fecha | date:'shortDate' }}</td>
+                <td>{{item.usuario.usuarioEmail}}</td>
+                <td>{{item.vigente}}</td>
+                <td>
+                    <div>
+                        <button class="button" style="margin-right: 5px;" (click)="seleccionarNoticia(item)"
+                            data-toggle="modal" data-target="#exampleModal1"><i class="fas fa-edit"></i></button>
+                        <button *ngIf="item.vigente == true " class="button" id="borrarNoticia"
+                            (click)="borrarNoticia(item)"><i class="fas fa-trash-alt"></i></button>
+                        <button *ngIf="item.vigente == false " class="button" id="activarNoticia"
+                            (click)="activarNoticia(item)"><i class="fas fa-check"></i></button>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel1">Noticia</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+
+                    <form #formnoticia2="ngForm" >
+                        <div class="form-group">
+                            <label for="txtNombre2">Título</label>
+                            <input type="text" class="form-control" name="txttitulo2" id="txtNombre2" required
+                                [(ngModel)]="noticiaSeleccionada.titulo" #titulovalidate2="ngModel">
+                            <div *ngIf="titulovalidate2.invalid && (titulovalidate2.dirty || titulovalidate2.touched)"
+                                class="alert alert-danger">
+                                <div *ngIf="titulovalidate2.errors.required">
+                                    El título es un campo requerido!
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="txtDescrip2">Descripción</label>
+                            <textarea rows="4" class="form-control" id="txtDescrip2" name="txtdescripcion2" required
+                                [(ngModel)]="noticiaSeleccionada.descripcion" #descripcionvalidate2="ngModel"></textarea>
+                            <div *ngIf="descripcionvalidate2.invalid && (descripcionvalidate2.dirty || descripcionvalidate2.touched)"
+                                class="alert alert-danger">
+                                <div *ngIf="descripcionvalidate2.errors.required">
+                                    La descripcíon de la noticia es un campo requerido!
+                                </div>
+                            </div>
+                        </div>
+                        
+                        
+                    </form>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="boton degradado" data-dismiss="modal">Cerrar</button>
+                    <button type="button" class="boton degradado" data-dismiss="modal" [disabled]="!formnoticia2.form.valid"
+                        (click)="modificarNoticia()"> <i class="fas fa-paper-plane"></i>  Modificar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
 </div>

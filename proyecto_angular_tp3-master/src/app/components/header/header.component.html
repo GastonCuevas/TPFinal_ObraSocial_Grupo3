@@ -24,14 +24,19 @@
 
                     <li class="nav-item dropdown active" *ngIf="esGerente && logIn" routerLinkActive="active">
                       <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Administrador<span class="sr-only">(current)</span>
+                        Gerente<span class="sr-only">(current)</span>
                       </a>
                       <div class="dropdown-menu menubasico" aria-labelledby="navbarDropdown">
                         <a class="dropdown-item" [routerLink]="['usuario']">Usuarios</a>
-                        <a class="dropdown-item" [routerLink]="['afiliado']">Afiliados</a>          
-                        <a class="dropdown-item" [routerLink]="['servicio']">Servicios</a>          
-                        <a class="dropdown-item" [routerLink]="['noticia']">Noticias</a>          
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" [routerLink]="['afiliado']">Afiliados</a> 
+                        <div class="dropdown-divider"></div>         
+                        <a class="dropdown-item" [routerLink]="['servicio']">Servicios</a>      
+                        <div class="dropdown-divider"></div>    
+                        <a class="dropdown-item" [routerLink]="['noticia']">Noticias</a>     
+                        <div class="dropdown-divider"></div>     
                         <a class="dropdown-item" [routerLink]="['novedad']">Novedades</a>
+                        <div class="dropdown-divider"></div>
                         <a class="dropdown-item" [routerLink]="['pagos']">Pagos</a>
                       </div>        
                     </li>
@@ -41,7 +46,7 @@
                         Administrativo<span class="sr-only">(current)</span>
                       </a>
                       <div class="dropdown-menu menubasico" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" [routerLink]="['socio']">Afiliados</a>          
+                        <a class="dropdown-item" [routerLink]="['afiliado']">Afiliados</a>          
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item" [routerLink]="['servicio']">Servicios</a>
                         <div class="dropdown-divider"></div>

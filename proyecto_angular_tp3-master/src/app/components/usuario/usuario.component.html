@@ -44,7 +44,7 @@
         </div>
       </div>
       <div class="row form-group">
-        <button type="button" class="btn btn-primary" style="margin-right: 20px;" (click)="crearUsuario()" (click)="mensajeExito()" [disabled]="!formusuario.form.valid"><i class="fas fa-paper-plane"></i> Agregar</button>           
+        <button type="button" class="btn btn-primary" style="margin-right: 20px;" (click)="crearUsuario()" [disabled]="!formusuario.form.valid"><i class="fas fa-paper-plane"></i> Agregar</button>           
       </div>
     </div>
 </form>
@@ -95,8 +95,9 @@
             <td>{{item.activo}}</td>
             <td>{{item.perfil}}</td>
             <td>
-                <button class="button" (click)="seleccionarUsuario(item)" data-toggle="modal" data-target="#exampleModal1"><i class="fas fa-edit"></i></button>
-                <button class="button" id="borrarUsuario" (click)="borrarUsuario(item)"><i class="fas fa-trash-alt"></i></button>
+                <button class="button" style="margin-right: 5px;" (click)="seleccionarUsuario(item)" data-toggle="modal" data-target="#exampleModal1"><i class="fas fa-edit"></i></button>
+                <button *ngIf="item.activo == true "class="button" id="borrarUsuario" (click)="borrarUsuario(item)"><i class="fas fa-trash-alt"></i></button>
+                <button *ngIf="item.activo == false "class="button" id="activarUsuario" (click)="activarUsuario(item)"><i class="fas fa-check"></i></button>
             </td>
         </tr>
     </tbody>
@@ -120,8 +121,9 @@
           <td><div *ngIf="item.perfil == 'afiliado'">{{item.perfil}}</div></td>
           <td>
             <div *ngIf="item.perfil == 'afiliado'">
-              <button class="button" (click)="seleccionarUsuario(item)" data-toggle="modal" data-target="#exampleModal1"><i class="fas fa-edit"></i></button>
-              <button class="button" id="borrarUsuario" (click)="borrarUsuario(item)"><i class="fas fa-trash-alt"></i></button>
+              <button class="button" style="margin-right: 5px;" (click)="seleccionarUsuario(item)" data-toggle="modal" data-target="#exampleModal1"><i class="fas fa-edit"></i></button>
+              <button *ngIf="item.activo == true "class="button" id="borrarUsuario" (click)="borrarUsuario(item)"><i class="fas fa-trash-alt"></i></button>
+              <button *ngIf="item.activo == false "class="button" id="activarUsuario" (click)="activarUsuario(item)"><i class="fas fa-check"></i></button>
             </div>  
           </td>
       </tr>

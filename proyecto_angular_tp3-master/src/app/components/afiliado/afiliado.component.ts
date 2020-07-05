@@ -32,10 +32,24 @@ export class AfiliadoComponent implements OnInit {
     this.cargarEmails();
   }
 
-  mensajeExito(){
-    this._toastr.success("El afiliado a sido cargado correctamente", "Exito");
+  mensajeExitoCarga(){
+    this._toastr.success("El afiliado ha sido cargado correctamente", "Exito");
   }
-
+  mensajeExitoModificado(){
+    this._toastr.success("El afiliado ha sido modificado correctamente", "Exito");
+  }
+  mensajeExitoEliminado(){
+    this._toastr.success("El afiliado ha sido eliminado correctamente", "Exito");
+  }
+  mensajeExitoEliminadoUsuario(){
+    this._toastr.success("El usuario del afiliado ha sido dado de baja correctamente", "Exito");
+  }
+  mensajeFallaEmailRepetido(){
+    this._toastr.error("Este e-mail ya está registrado", "Falla");
+  }
+  mensajeFallaError(mensaje){
+    this._toastr.warning(mensaje);
+  }
   ngOnInit(): void {
   }
   public crearAfiliado() {
@@ -45,7 +59,7 @@ export class AfiliadoComponent implements OnInit {
     if (this.band == false) {
       this.afiliadoService.agregarAfiliado(this.afiliado).subscribe(
         (result) => {
-          alert("Afiliado guardado");
+          this.mensajeExitoCarga();
           this.cargarTabla();
           this.afiliado = new Afiliado();
         },
@@ -54,7 +68,7 @@ export class AfiliadoComponent implements OnInit {
         }
       )
     } else {
-      alert("Este email ya esta registrado");
+      this.mensajeFallaEmailRepetido();
     }
 
 
@@ -78,6 +92,7 @@ export class AfiliadoComponent implements OnInit {
       },
       (error) => {
         console.log(error);
+        this.mensajeFallaError(error);
       }
     );
   }
@@ -88,12 +103,13 @@ export class AfiliadoComponent implements OnInit {
       (result) => {
         this.bajaUsuario(afi);
         console.log("afi borrarAfiliado:" + afi.email);
-        alert("Afiliado Eliminado");
+        this.mensajeExitoEliminado();
         afi = new Afiliado();
         this.cargarTabla();
       },
       (error) => {
         console.log(error);
+        this.mensajeFallaError(error);
       }
     );
   }
@@ -113,11 +129,12 @@ export class AfiliadoComponent implements OnInit {
     console.log(this.usuarioEliminado.usuarioEmail);
     this.usuarioService.updateUsuario(this.usuarioEliminado).subscribe(
       (result) => {
-        alert("Usuario inactivado");
+        this.mensajeExitoEliminadoUsuario();
         this.usuarioEliminado = new Usuario();
       },
       (error) => {
         console.log(error);
+        this.mensajeFallaError(error);
       }
     );
   }
@@ -137,6 +154,7 @@ export class AfiliadoComponent implements OnInit {
       },
       (error) => {
         console.log(error);
+        this.mensajeFallaError(error);
       }
     );
 
@@ -145,12 +163,13 @@ export class AfiliadoComponent implements OnInit {
   public modificarAfiliado() {
     this.afiliadoService.updateAfiliado(this.afiliadoSeleccionado).subscribe(
       (result) => {
-        alert("Afiliado actualizado");
+        this.mensajeExitoModificado();
         this.afiliadoSeleccionado = new Afiliado();
         this.cargarTabla();
       },
       (error) => {
         console.log(error);
+        this.mensajeFallaError(error);
       }
     );
   }
@@ -190,6 +209,7 @@ export class AfiliadoComponent implements OnInit {
       },
       (error) => {
         console.log(error);
+        this.mensajeFallaError(error);
       }
     )
   }

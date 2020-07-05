@@ -5,14 +5,12 @@
 
 .degradado{    
     border: 1px solid;
-    height: 33px;
     border-radius: 2px;
-    width: 60%;
     cursor: pointer;
 }
 
 .boton{
-    width: 50%;
+    width: 180px;
     margin: 0 auto;
     text-align: center;
     padding: 1%;
