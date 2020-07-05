@@ -43,7 +43,7 @@ import { NoticiaComponent } from './components/noticia/noticia.component';
     AlifeFileToBase64Module,
     BrowserAnimationsModule,
     ToastrModule.forRoot({
-      timeOut: 10000,
+      timeOut: 3000,
       preventDuplicates: true,
     }),
   ],

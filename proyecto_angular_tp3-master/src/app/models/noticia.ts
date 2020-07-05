@@ -1,7 +1,5 @@
 import { Usuario } from './usuario'
 
-
-
 export class Noticia {
     _id: string
     titulo: string
