@@ -8,7 +8,7 @@ import { AfiliadoComponent } from './components/afiliado/afiliado.component';
 import { NoticiaComponent } from './components/noticia/noticia.component';
 import { NovedadComponent } from './components/novedad/novedad.component';
 import { ServicioComponent } from './components/servicio/servicio.component';
-
+import { PagoComponent } from './components/pago/pago.component';
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'us', component: AbouthUsComponent },
@@ -17,6 +17,7 @@ const routes: Routes = [
   { path: 'noticia', component: NoticiaComponent },
   { path: 'novedad', component: NovedadComponent },
   { path: 'servicio', component: ServicioComponent },
+  { path: 'pago', component: PagoComponent },
   { path: '**', pathMatch:'full',redirectTo:'home' }
 ];
 

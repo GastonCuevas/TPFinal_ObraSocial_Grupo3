@@ -21,6 +21,7 @@ import { ToastrModule } from 'ngx-toastr';
 import { NoticiaComponent } from './components/noticia/noticia.component';
 import { NovedadComponent } from './components/novedad/novedad.component';
 import { ServicioComponent } from './components/servicio/servicio.component';
+import { PagoComponent } from './components/pago/pago.component';
 
  
 @NgModule({
@@ -35,7 +36,8 @@ import { ServicioComponent } from './components/servicio/servicio.component';
     AfiliadoComponent,
     NoticiaComponent,
     NovedadComponent,
-    ServicioComponent
+    ServicioComponent,
+    PagoComponent
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,120 @@
+<div class="container-fluid" *ngIf="usuarioService.userLogged.perfil == 'administrativo'">
+    <h3 class="text-center">Formulario pago</h3>
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header">
+                Pago
+            </div>
+            <div class="card-body formulario">
+                <form #formnoticia="ngForm">
+                    <div class="row form-group">
+                        <label for="txtNombre" class="col-sm-12 col-md-4">Monto</label>
+                        <input type="number" class="form-control col-md-8" name="txttitulo" id="txtNombre" required
+                            [(ngModel)]="pago.monto" #titulovalidate="ngModel">
+                        <div *ngIf="titulovalidate.invalid && (titulovalidate.dirty || titulovalidate.touched)"
+                            class="alert alert-danger">
+                            <div *ngIf="titulovalidate.errors.required">
+                                El monto es un campo requerido!
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row form-group">
+                        <label class="col-sm-12 col-md-4">Listado de emails afiliados:</label>
+                        <select name="emailSelect" id="emailId" class="form-control col-sm-12 col-md-8" required [(ngModel)]= "emailAfiliado" >
+                            <option *ngFor="let item of emails">{{item}}</option>
+                        </select>
+                      </div>
+                    
+                    <div class="row form-group">
+                        <label for="txtDescrip" class="col-md-4 col-sm-12">Fecha de pago:</label>
+                        <input type="date" id="txtDescrip" name="fechaPago" class="col-md-8" required [(ngModel)]="pago.fecha" >
+                    </div>
+                    
+                    
+                    <div class="row form-group">
+                        <button type="button" class="boton degradado" style="margin-right: 20px;" (click)="crearPago()"  [disabled]="!formnoticia.form.valid"><i class="fas fa-paper-plane"></i> Agregar</button> 
+                        <button  type="reset" class="boton degradado" ><i class="fas fa-broom"></i> Limpiar</button>
+                    </div>
+                    
+
+                </form>
+            </div>
+            <!--fin card body-->
+        </div>
+        <!--fin tarjeta-->
+    </div>
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="row">Afiliado</th>
+                <th>Monto</th>
+                <th>Fecha</th>
+                <th>Año</th>
+                <th>Mes</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let item of pagos">
+                <td scope="row"> {{item.afiliado.apellido}}, {{item.afiliado.nombres}}</td>
+                <td>{{item.monto}}</td>
+                <td>{{item.fecha | date:'shortDate' }}</td>
+                <td>{{item.anio}}</td>
+                <td>{{item.mes}}</td>
+                <td>
+                    <div>
+                        <button class="button" style="margin-right: 5px;" (click)="seleccionarPago(item)"
+                            data-toggle="modal" data-target="#exampleModal1"><i class="fas fa-edit"></i></button>
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel1">Pago</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+
+                    <form #formnoticia2="ngForm" >
+                        <div class="form-group">
+                            <label for="txtNombre2">Monto</label>
+                            <input type="number" class="form-control" name="txttitulo2" id="txtNombre2" required
+                                [(ngModel)]="pagoSeleccionado.monto" #titulovalidate2="ngModel">
+                            <div *ngIf="titulovalidate2.invalid && (titulovalidate2.dirty || titulovalidate2.touched)"
+                                class="alert alert-danger">
+                                <div *ngIf="titulovalidate2.errors.required">
+                                    El monto es un campo requerido!
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row form-group">
+                            <label class="col-sm-12 col-md-4">Listado de emails afiliados:</label>
+                            <select name="emailSelect" id="emailId" class="form-control col-sm-12 col-md-8" required [(ngModel)]= "emailAfiliado" >
+                                <option *ngFor="let item of emails">{{item}}</option>
+                            </select>
+                          </div>
+
+                    </form>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="boton degradado" data-dismiss="modal">Cerrar</button>
+                    <button type="button" class="boton degradado" data-dismiss="modal" [disabled]="!formnoticia2.form.valid"
+                        (click)="modificarPago()"> <i class="fas fa-paper-plane"></i>  Modificar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+</div>
