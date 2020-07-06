@@ -1,0 +1,17 @@
+.noticia{
+    background: rgba(0,0,0,0.2);
+    padding: 10px;
+}
+
+.degradado{    
+    border: 1px solid;
+    border-radius: 2px;
+    cursor: pointer;
+}
+
+.boton{
+    width: 180px;
+    margin: 0 auto;
+    text-align: center;
+    padding: 1%;
+}

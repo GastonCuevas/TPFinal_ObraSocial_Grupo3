@@ -19,6 +19,8 @@ import { UsuarioService } from './services/usuario.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 import { NoticiaComponent } from './components/noticia/noticia.component';
+import { NovedadComponent } from './components/novedad/novedad.component';
+import { ServicioComponent } from './components/servicio/servicio.component';
 
  
 @NgModule({
@@ -31,7 +33,9 @@ import { NoticiaComponent } from './components/noticia/noticia.component';
     AbouthUsComponent,
     UsuarioComponent,
     AfiliadoComponent,
-    NoticiaComponent
+    NoticiaComponent,
+    NovedadComponent,
+    ServicioComponent
   ],
   imports: [
     BrowserModule,

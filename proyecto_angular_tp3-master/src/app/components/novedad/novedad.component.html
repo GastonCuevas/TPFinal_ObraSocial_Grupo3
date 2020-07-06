@@ -1,1 +1,118 @@
-<p>novedad works!</p>
+
+<div class="container-fluid" *ngIf="usuarioService.userLogged.perfil == 'afiliado'">
+    <h3 class="text-center">Registro de Novedades</h3>
+    <div class="offset-lg-2 offset-md-2 col-md-8 col-lg-8 col-sm-12 col-12">
+        <div class="card">
+            <div class="card-header">
+                Redacción de Novedad
+            </div>
+            <div class="card-body formulario">
+                <form #formnovedad="ngForm">
+                   
+                    <div class="form-group">
+                        <textarea rows="4" class="form-control" id="txtTexto" name="txtTexto" required
+                            [(ngModel)]="novedad.texto" #novedadvalidate="ngModel"></textarea>
+                        <div *ngIf="novedadvalidate.invalid && (novedadvalidate.dirty || novedadvalidate.touched)"
+                            class="alert alert-danger">
+                            <div *ngIf="novedadvalidate.errors.required">
+                                El contenido de la novedad es un campo requerido!
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row form-group">
+                        <button type="button" class="boton degradado" style="margin-right: 20px;" (click)="crearNovedad()"  [disabled]="!formnovedad.form.valid"><i class="fas fa-paper-plane"></i> Enviar</button> 
+                        <button  type="reset" class="boton degradado" ><i class="fas fa-broom"></i> Limpiar</button>
+                    </div>
+                    
+
+                </form>
+            </div>
+            <!--fin card body-->
+        </div>
+        <!--fin tarjeta-->
+    </div>
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="row">Novedad</th>
+                <th>Estado</th>
+                <th>Respuesta</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let item of novedadesAfiliado">
+                <td scope="row">{{item.texto}}</td>
+                <td>{{item.estado}}</td>
+                <td>{{item.respuesta}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<div class="container-fluid" *ngIf="usuarioService.userLogged.perfil == 'administrativo'">
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel1">Novedad</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+
+                    <form #formnovedad2="ngForm" >
+                        
+                        <div class="form-group">
+                            <label for="txtNovedad2">Respuesta</label>
+                            <textarea rows="4" class="form-control" id="txtNovedad2" name="txtNovedad2" required
+                                [(ngModel)]="respuesta" #novedadvalidate2="ngModel"></textarea>
+                            <div *ngIf="novedadvalidate2.invalid && (novedadvalidate2.dirty || novedadvalidate2.touched)"
+                                class="alert alert-danger">
+                                <div *ngIf="novedadvalidate2.errors.required">
+                                    La respuesta de la novedad es un campo requerido!
+                                </div>
+                            </div>
+                        </div>
+                        
+                        
+                    </form>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="boton degradado" data-dismiss="modal">Cerrar</button>
+                    <button type="button" class="boton degradado" data-dismiss="modal" [disabled]="!formnovedad2.form.valid"
+                        (click)="modificarNovedad()"> <i class="fas fa-paper-plane"></i>  Responder</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="row">Novedad</th>
+                <th>Usuario</th>
+                <th>Estado</th>
+                <th>Respuesta</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let item2 of novedades">
+                <td scope="row">{{item2.texto}}</td>
+                <td>{{item2.usuario.usuarioEmail}}</td>
+                <td>{{item2.estado}}</td>
+                <td>{{item2.respuesta}}</td>
+                <td>
+                    <div>
+                        <button *ngIf="item2.estado =='pendiente'" class="button" style="margin-right: 5px;" (click)="seleccionarNovedad(item2)"
+                            data-toggle="modal" data-target="#exampleModal1"><i class="fas fa-edit"></i></button>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

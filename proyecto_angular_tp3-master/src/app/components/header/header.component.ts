@@ -16,12 +16,16 @@ export class HeaderComponent implements OnInit {
   esAdministrativo = false;
   esGerente = false;
   esSocio = false;
+  url = "";
   constructor(
-    private usuarioService: UsuarioService) { }
+    private usuarioService: UsuarioService) { 
+      this.url = document.URL;
+      console.log(this.url);
+    }
 
   ngOnInit(): void {
   }
-
+  
   IniciarSesion() {
     
     this.usuarioService.login(this.usuario, this.clave)

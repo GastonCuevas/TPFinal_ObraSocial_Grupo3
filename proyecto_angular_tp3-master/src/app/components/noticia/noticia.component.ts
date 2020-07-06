@@ -15,12 +15,14 @@ export class NoticiaComponent implements OnInit {
   noticiaSeleccionada = new Noticia();
   usuario: Usuario;
   usuarios: Array<Usuario>;
+  
   constructor(private noticiaService: NoticiaService, public usuarioService: UsuarioService, private _toastr: ToastrService) {
     this.noticias = new Array<Noticia>();
     this.noticia = new Noticia();
     this.usuario = new Usuario();
     this.usuarios = new Array<Usuario>();
     this.noticiaSeleccionada = new Noticia();
+    
     this.cargarNoticias();
     this.cargarTabla();
   }
@@ -59,6 +61,7 @@ export class NoticiaComponent implements OnInit {
       },
       (error) => {
         console.log(error);
+        this.mensajeFallaError(error);
       }
     )
   }
