@@ -5,14 +5,14 @@ export class Servicio {
     nombre: string;
     imagen: string;
     activo: boolean;
-    afiliadosInsc: Array<Afiliado>;
+    afiliadosInsc: Array<Afiliado> = new Array<Afiliado>();
 
-    Servicio(_id?:string, nombre?: string, imagen?: string, activo?:
-        boolean, afiliadosInsc?: Array<Afiliado>){
-           this._id = _id;
-           this.nombre = nombre;
-           this.imagen = imagen;
-           this.activo = activo;
-           this.afiliadosInsc = afiliadosInsc;
-   }
+    Servicio(_id?: string, nombre?: string, imagen?: string, activo?:
+        boolean, afiliadosInsc?: Array<Afiliado>) {
+        this._id = _id;
+        this.nombre = nombre;
+        this.imagen = imagen;
+        this.activo = activo;
+        this.afiliadosInsc = afiliadosInsc;
+    }
 }

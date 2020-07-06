@@ -2,7 +2,7 @@ const Servicios = require('../models/servicios');
 
 const serviciosCtrl = {}
 serviciosCtrl.getServicios = async (req, res) => {
-    servicios = await Servicios.find().populate("afiliado");
+    servicios = await Servicios.find().populate("afiliadosInsc");
     res.json(servicios);
 }
 
