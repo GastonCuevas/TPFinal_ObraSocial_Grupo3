@@ -178,3 +178,26 @@
     </tbody>
 </table>
 </div>
+
+<div *ngIf="usuarioService.userLoggedIn && usuarioService.userLogged.perfil == 'gerente'">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="row">Apellido y nombre</th>
+                <th>DNI</th>
+                <th>e-mail</th>
+                <th>Telefono</th>
+                <th>Imagen</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let item of afiliados">
+                <td scope="row">{{item.apellido}}, {{item.nombres}}</td>
+                <td>{{item.dni}}</td>
+                <td>{{item.email}}</td>
+                <td>{{item.telefono}}</td>
+                <td><img src="{{item.imagen}}"  width="70px" height="70px"></td>
+            </tr>
+        </tbody>
+    </table>
+</div>

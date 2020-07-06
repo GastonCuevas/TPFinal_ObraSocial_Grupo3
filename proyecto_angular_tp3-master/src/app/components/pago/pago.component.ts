@@ -14,7 +14,9 @@ import { ToastrService } from 'ngx-toastr';
 export class PagoComponent implements OnInit {
   emails: Array<string> = [];
   ticketInfo: Array<string> = [];
+  ticketInfoVer: Array<string> = [];
   pago: Pago;
+  pagosAfiliado: Array<Pago>;
   pagos: Array<Pago>;
   pagoSeleccionado= new Pago();
   afiliado: Afiliado;
@@ -25,6 +27,7 @@ export class PagoComponent implements OnInit {
   fechapago: Date;
   constructor(private pagoService: PagoService, public usuarioService: UsuarioService, private afiliadoService: AfiliadoService, private _toastr: ToastrService) {
     this.pagos= new Array<Pago>();
+    this.pagosAfiliado = new Array<Pago>();
     this.pago= new Pago();
     this.afiliado = new Afiliado();
     this.afiliados= new Array<Afiliado>();
@@ -34,6 +37,7 @@ export class PagoComponent implements OnInit {
     this.cargarPagos();
     this.cargarTabla();
     this.cargarAfiliados();
+    this.cargarPagosAfiliado();
   }
 
   ngOnInit(): void {
@@ -52,6 +56,27 @@ export class PagoComponent implements OnInit {
 
   public asignarAfiliado(){
     
+  }
+
+  public cargarPagosAfiliado() {
+    this.pagosAfiliado = new Array<Pago>();
+    this.pagoService.obtenerPago().subscribe(
+      (result) => {
+        var pag: Pago = new Pago();
+        result.forEach(element => {
+          Object.assign(pag, element);
+          if(pag.afiliado.email == this.usuarioService.userLogged.usuarioEmail){
+            this.pagosAfiliado.push(pag);
+          }
+          console.log(pag);
+          pag = new Pago();
+        });
+      },
+      (error) => {
+        console.log(error);
+        this.mensajeFallaError(error);
+      }
+    )
   }
 
   public cargarPagos() {
@@ -74,6 +99,10 @@ export class PagoComponent implements OnInit {
   }
   public seleccionarPago(pag: Pago){
     this.pagoSeleccionado = pag;
+    this.ticketInfoVer[0]=pag.afiliado.email;
+    this.ticketInfoVer[1]=pag.afiliado.apellido;
+    this.ticketInfoVer[2]=pag.afiliado.nombres;
+    this.ticketInfoVer[3]=pag.afiliado.dni.toString();
   }
 
   public crearPago2(){

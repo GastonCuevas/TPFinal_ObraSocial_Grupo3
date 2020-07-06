@@ -142,3 +142,137 @@
     </div>
 
 </div>
+
+<div class="container-fluid" *ngIf="usuarioService.userLogged.perfil == 'gerente'">
+    <h3 class="text-center">Planilla de los pagos realizados por los afiliados</h3>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="row">Afiliado</th>
+                <th>Monto</th>
+                <th>Fecha</th>
+                <th>Año</th>
+                <th>Mes</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let item of pagos">
+                <td scope="row"> {{item.afiliado.apellido}}, {{item.afiliado.nombres}}</td>
+                <td>{{item.monto}}</td>
+                <td>{{item.fecha | date:'shortDate' }}</td>
+                <td>{{item.anio}}</td>
+                <td>{{item.mes}}</td>
+                <td>
+                    <div>
+                        <button class="button" style="margin-right: 5px;" (click)="seleccionarPago(item)"
+                        data-toggle="modal" data-target="#modalVer"><i class="far fa-eye"></i></button>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<div class="container-fluid" *ngIf="usuarioService.userLogged.perfil == 'afiliado'">
+    <h3 class="text-center">Mis pagos</h3>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="row">Afiliado</th>
+                <th>Monto</th>
+                <th>Fecha</th>
+                <th>Año</th>
+                <th>Mes</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let item of pagosAfiliado">
+                <td scope="row"> {{item.afiliado.apellido}}, {{item.afiliado.nombres}}</td>
+                <td>{{item.monto}}</td>
+                <td>{{item.fecha | date:'shortDate' }}</td>
+                <td>{{item.anio}}</td>
+                <td>{{item.mes}}</td>
+                <td>
+                    <div>
+                        <button class="button" style="margin-right: 5px;" (click)="seleccionarPago(item)"
+                            data-toggle="modal" data-target="#modalVer"><i class="far fa-eye"></i></button>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<!-- Modal3 -->
+<div class="modal fade" id="modalVer" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabelVer"
+aria-hidden="true">
+<div class="modal-dialog" role="document">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="modalVerLabel">Ticket</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+
+            <div class="container col-12">
+                <div class="row">
+                    <div class="col"><img src="./../../../assets/Images/logoKenkofuku.png" class="imagen-logo">
+                    </div>
+                    <div class="col"></div>
+                    <div class="w-100"></div>
+                    <div class="col">
+                        <h4>Kenkōfuku</h4>
+                    </div>
+                    <div class="col">{{pagoSeleccionado.fecha}}</div>
+                </div>
+            </div>
+            <br>
+            <div class="container col-12">
+                <div class="row">
+                    <div class="col">Pago de la cuota del mes {{pagoSeleccionado.mes}}, del año {{pago.anio}}</div>
+                </div>
+            </div>
+            <br>
+            <div class="container col-12">
+                <div class="row">
+                    <div class="col">Email del Afiliado:</div>
+                    <div class="col">{{ticketInfoVer[0]}}</div>
+                    <div class="w-100"></div>
+                    <div class="col">Nombre del Afiliado:</div>
+                    <div class="col">{{ticketInfoVer[1]}}, {{ticketInfoVer[2]}}</div>
+                    <div class="w-100"></div>
+                    <div class="col">DNI del Afiliado:</div>
+                    <div class="col">{{ticketInfoVer[3]}}</div>
+                </div>
+            </div>
+            <br>
+            <br>
+            <div class="container col-12">
+                <div class="row">
+                    <div class="col">
+                        <p style="font-size: 0.875em; text-align: justify;"> Queremos informarte que en
+                            beneficio de tu seguridad,
+                            esta operatoria se encuentra alcanzada por controles
+                            que pueden definir la demora del pago efectuado.
+                            <br>
+                            Superados dichos controles, el pago se cursa
+                            de forma inmediata, y su acreditacion en la cuenta
+                            de Kenkōfuku es responsabilidad del mismo Kenkōfuku.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+        </div>
+    </div>
+</div>
+</div>
