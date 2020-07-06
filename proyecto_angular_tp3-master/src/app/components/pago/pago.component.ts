@@ -13,6 +13,7 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class PagoComponent implements OnInit {
   emails: Array<string> = [];
+  ticketInfo: Array<string> = [];
   pago: Pago;
   pagos: Array<Pago>;
   pagoSeleccionado= new Pago();
@@ -107,6 +108,28 @@ export class PagoComponent implements OnInit {
         console.log(error);
       }
     )
+  }
+
+  public mostrarData(){
+    console.log("entró mostrardata");
+    var auxdate = new Date(this.pago.fecha);
+    this.pago.anio= auxdate.getFullYear();
+    this.pago.mes= auxdate.getMonth()+1;
+    this.pago.afiliado=this.afiliados.find((item:Afiliado)=>item.email==this.emailAfiliado);
+    this.ticketInfo[0]=this.pago.afiliado.email;
+    this.ticketInfo[1]=this.pago.afiliado.apellido;
+    this.ticketInfo[2]=this.pago.afiliado.nombres;
+    this.ticketInfo[3]=this.pago.afiliado.dni.toString();
+    console.log(this.pago.fecha);
+    console.log(this.pago.anio);
+    console.log(this.pago.mes);
+    console.log(this.pago.afiliado.email);
+    console.log(this.pago.afiliado.nombres);
+    console.log(this.pago.afiliado.apellido);
+    console.log(this.ticketInfo);
+    console.log(this.ticketInfo[0]);
+    console.log(this.ticketInfo[1]);
+    console.log(this.ticketInfo[2]);
   }
 
   public modificarPago(){

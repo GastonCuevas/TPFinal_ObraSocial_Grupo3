@@ -20,22 +20,26 @@
                     </div>
                     <div class="row form-group">
                         <label class="col-sm-12 col-md-4">Listado de emails afiliados:</label>
-                        <select name="emailSelect" id="emailId" class="form-control col-sm-12 col-md-8" required [(ngModel)]= "emailAfiliado" >
+                        <select name="emailSelect" id="emailId" class="form-control col-sm-12 col-md-8" required
+                            [(ngModel)]="emailAfiliado">
                             <option *ngFor="let item of emails">{{item}}</option>
                         </select>
-                      </div>
-                    
+                    </div>
+
                     <div class="row form-group">
                         <label for="txtDescrip" class="col-md-4 col-sm-12">Fecha de pago:</label>
-                        <input type="date" id="txtDescrip" name="fechaPago" class="col-md-8" required [(ngModel)]="pago.fecha" >
+                        <input type="date" id="txtDescrip" name="fechaPago" class="col-md-8" required
+                            [(ngModel)]="pago.fecha">
                     </div>
-                    
-                    
+
+
                     <div class="row form-group">
-                        <button type="button" class="boton degradado" style="margin-right: 20px;" (click)="crearPago()"  [disabled]="!formnoticia.form.valid"><i class="fas fa-paper-plane"></i> Agregar</button> 
-                        <button  type="reset" class="boton degradado" ><i class="fas fa-broom"></i> Limpiar</button>
+                        <button type="button" class="boton degradado" style="margin-right: 20px;"
+                            (click)="mostrarData()" data-toggle="modal" data-target="#modalConfirm"
+                            [disabled]="!formnoticia.form.valid"><i class="fas fa-paper-plane"></i> Agregar</button>
+                        <button type="reset" class="boton degradado"><i class="fas fa-broom"></i> Limpiar</button>
                     </div>
-                    
+
 
                 </form>
             </div>
@@ -52,7 +56,6 @@
                 <th>Fecha</th>
                 <th>Año</th>
                 <th>Mes</th>
-                <th>Acciones</th>
             </tr>
         </thead>
         <tbody>
@@ -62,59 +65,80 @@
                 <td>{{item.fecha | date:'shortDate' }}</td>
                 <td>{{item.anio}}</td>
                 <td>{{item.mes}}</td>
-                <td>
-                    <div>
-                        <button class="button" style="margin-right: 5px;" (click)="seleccionarPago(item)"
-                            data-toggle="modal" data-target="#exampleModal1"><i class="fas fa-edit"></i></button>
-                        
-                    </div>
-                </td>
             </tr>
         </tbody>
     </table>
-
-    <!-- Modal -->
-    <div class="modal fade" id="exampleModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    <!-- Modal2 -->
+    <div class="modal fade" id="modalConfirm" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
-        <div class="modal-dialog">
+        <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel1">Pago</h5>
+                    <h5 class="modal-title" id="modalConfirmLabel">Ticket</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
 
-                    <form #formnoticia2="ngForm" >
-                        <div class="form-group">
-                            <label for="txtNombre2">Monto</label>
-                            <input type="number" class="form-control" name="txttitulo2" id="txtNombre2" required
-                                [(ngModel)]="pagoSeleccionado.monto" #titulovalidate2="ngModel">
-                            <div *ngIf="titulovalidate2.invalid && (titulovalidate2.dirty || titulovalidate2.touched)"
-                                class="alert alert-danger">
-                                <div *ngIf="titulovalidate2.errors.required">
-                                    El monto es un campo requerido!
-                                </div>
+                    <div class="container col-12">
+                        <div class="row">
+                            <div class="col"><img src="./../../../assets/Images/logoKenkofuku.png" class="imagen-logo">
+                            </div>
+                            <div class="col"></div>
+                            <div class="w-100"></div>
+                            <div class="col">
+                                <h4>Kenkōfuku</h4>
+                            </div>
+                            <div class="col">{{pago.fecha}}</div>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="container col-12">
+                        <div class="row">
+                            <div class="col">Pago de la cuota del mes {{pago.mes}}, del año {{pago.anio}}</div>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="container col-12">
+                        <div class="row">
+                            <div class="col">Email del Afiliado:</div>
+                            <div class="col">{{ticketInfo[0]}}</div>
+                            <div class="w-100"></div>
+                            <div class="col">Nombre del Afiliado:</div>
+                            <div class="col">{{ticketInfo[1]}}, {{ticketInfo[2]}}</div>
+                            <div class="w-100"></div>
+                            <div class="col">DNI del Afiliado:</div>
+                            <div class="col">{{ticketInfo[3]}}</div>
+                        </div>
+                    </div>
+                    <br>
+                    <br>
+                    <div class="container col-12">
+                        <div class="row">
+                            <div class="col">
+                                <p style="font-size: 0.875em; text-align: justify;"> Queremos informarte que en
+                                    beneficio de tu seguridad,
+                                    esta operatoria se encuentra alcanzada por controles
+                                    que pueden definir la demora del pago efectuado.
+                                    <br>
+                                    Superados dichos controles, el pago se cursa
+                                    de forma inmediata, y su acreditacion en la cuenta
+                                    de Kenkōfuku es responsabilidad del mismo Kenkōfuku.
+                                </p>
                             </div>
                         </div>
-                        <div class="row form-group">
-                            <label class="col-sm-12 col-md-4">Listado de emails afiliados:</label>
-                            <select name="emailSelect" id="emailId" class="form-control col-sm-12 col-md-8" required [(ngModel)]= "emailAfiliado" >
-                                <option *ngFor="let item of emails">{{item}}</option>
-                            </select>
-                          </div>
-
-                    </form>
+                    </div>
 
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="boton degradado" data-dismiss="modal">Cerrar</button>
-                    <button type="button" class="boton degradado" data-dismiss="modal" [disabled]="!formnoticia2.form.valid"
-                        (click)="modificarPago()"> <i class="fas fa-paper-plane"></i>  Modificar</button>
+
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                    <button type="button" name="pagoxd" data-dismiss="modal" (click)="crearPago()"
+                        class="btn btn-primary">Confirmar pago</button>
                 </div>
             </div>
         </div>
     </div>
-    
+
 </div>
