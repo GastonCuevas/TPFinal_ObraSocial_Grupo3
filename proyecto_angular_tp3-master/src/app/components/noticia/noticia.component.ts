@@ -4,12 +4,9 @@ import { UsuarioService } from 'src/app/services/usuario.service';
 import { Noticia } from 'src/app/models/noticia';
 import { NoticiaService } from 'src/app/services/noticia.service';
 import { ToastrService } from 'ngx-toastr';
-<<<<<<< Updated upstream
-=======
 import { FacebookService, InitParams, LoginResponse } from 'ngx-fb';
 import { ApiMethod } from 'ngx-fb/dist/esm/providers/facebook';
 
->>>>>>> Stashed changes
 @Component({
   selector: 'app-noticia',
   templateUrl: './noticia.component.html',
@@ -28,12 +25,8 @@ export class NoticiaComponent implements OnInit {
     this.usuario = new Usuario();
     this.usuarios = new Array<Usuario>();
     this.noticiaSeleccionada = new Noticia();
-<<<<<<< Updated upstream
-    
-=======
 
 
->>>>>>> Stashed changes
     this.cargarNoticias();
     this.cargarTabla();
     this.iniciarFb();

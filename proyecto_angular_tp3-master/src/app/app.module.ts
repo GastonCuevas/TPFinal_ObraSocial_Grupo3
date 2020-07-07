@@ -24,10 +24,7 @@ import { ServicioComponent } from './components/servicio/servicio.component';
 import { PagoComponent } from './components/pago/pago.component';
 import {NgxPrintModule} from 'ngx-print';
 
-<<<<<<< Updated upstream
-=======
 import { FacebookModule } from 'ngx-fb';
->>>>>>> Stashed changes
  
 @NgModule({
   declarations: [
@@ -42,11 +39,7 @@ import { FacebookModule } from 'ngx-fb';
     NoticiaComponent,
     NovedadComponent,
     ServicioComponent,
-<<<<<<< Updated upstream
-    PagoComponent
-=======
     PagoComponent,
->>>>>>> Stashed changes
   ],
   imports: [
     BrowserModule,
@@ -58,6 +51,7 @@ import { FacebookModule } from 'ngx-fb';
     AlifeFileToBase64Module,
     BrowserAnimationsModule,
     NgxPrintModule,
+    FacebookModule.forRoot(),
     ToastrModule.forRoot({
       timeOut: 3000,
       preventDuplicates: true,
