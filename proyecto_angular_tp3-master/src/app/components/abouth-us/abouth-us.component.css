@@ -75,6 +75,15 @@ ul li a{
     color: rgba(0, 0, 0, 0.589);
 }
 
+#Subtitulo1{
+    width: 100%;
+    margin-bottom: 10px;
+    font-size: 16px;
+    font-family:'Trebuchet MS';
+    text-align: center;
+    color: rgba(0, 0, 0, 0.589);
+}
+
 #Slider{
     background-color: white;
     margin-left: auto;
@@ -96,6 +105,28 @@ ul li a{
     box-shadow: 0px 43px 31px -12px rgba(0,0,0,0.47);
 }
 
+#Slider2{
+    clear: both;
+    margin-top: 15px;
+    padding-top: 10px;
+    background-color: white;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    display: block;
+    align-items: center;
+    justify-items: center;
+    position: static;
+    border: white 8px;
+    border-style: solid;
+    position: relative;
+    width: 80%;
+    height: 10%;
+    border-radius: 5px;
+    overflow: hidden;
+    border-bottom: solid grey 1px;
+}
+
 #section1{
     margin-top: 50px;
     margin-right: 60px;
@@ -103,8 +134,6 @@ ul li a{
     float: right;
     text-align: center;
     padding-bottom: 10px;
-    border-bottom: gray 3px;
-    border-bottom-style: solid;
 }
 
 #Titulo1{
@@ -118,6 +147,8 @@ ul li a{
     text-align: left;
     font-size: 35px;
     padding-bottom: 10px;
+    border-bottom: gray 2px;
+    border-bottom-style: solid;
 }
 
 #Titulo3{
@@ -167,6 +198,37 @@ ul li a{
     float: right;
 }
 
+#txt11{
+    text-align: center;
+    font-size: 13px;
+    font-family: calibri;
+    color: rgb(75, 73, 73);
+    width: 65%;
+    float: left;
+    border: solid grey 1px;
+    border-radius: 5px;
+    padding: 20px;
+}
+
+#txt12{
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    display: block;
+    align-items: center;
+    justify-items: center;
+    font-size: 13px;
+    font-family: calibri;
+    color: rgb(75, 73, 73);
+    width: 65%;
+    float: right;
+    border: solid grey 1px;
+    border-radius: 5px;
+    padding: 20px;
+    height: 100%;
+}
+
 #txt2{
     margin-left: 20px;
     margin-bottom: 5px;
@@ -180,6 +242,7 @@ ul li a{
 }
 
 #txt3{
+    padding-top: 10px;
     text-align: left;
     font-size: 13px;
     font-style: italic ;
@@ -356,6 +419,8 @@ footer{
 
 #principal{
     background-color: white;
+    padding-top: 3px;
+    padding-bottom: 3px;
     align-items: center;
     justify-items: center;
     width: 100%;
@@ -364,6 +429,21 @@ footer{
     transition: all 600ms;
     animation-name: autoplay;
     animation-duration: 12s;
+    animation-direction: alternate;
+    animation-fill-mode: forwards;
+    animation-iteration-count: infinite;
+}
+
+#principal2{
+    background-color: white;
+    align-items: center;
+    justify-items: center;
+    width: 100%;
+    display: flex;
+    transform: translate3d(0, 0, 0);
+    transition: all 600ms;
+    animation-name: autoplay;
+    animation-duration: 50s;
     animation-direction: alternate;
     animation-fill-mode: forwards;
     animation-iteration-count: infinite;

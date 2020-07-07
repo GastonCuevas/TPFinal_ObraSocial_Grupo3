@@ -1,11 +1,11 @@
-<div *ngIf="usuarioService.userLoggedIn && usuarioService.userLogged.perfil == 'administrativo'">
-<form class="card" #formafiliado="ngForm">
+<div id="principal" *ngIf="usuarioService.userLoggedIn && usuarioService.userLogged.perfil == 'administrativo'">
+<form id="principal" class="card col-8" #formafiliado="ngForm">
     <div class="card-header text-center"> --Formulario de Afiliado--</div>
     <div class="card-body">
         
 
         <div class="row form-group" >
-            <label class="col-sm-12 col-md-4">Nombre:</label>
+            <label class="col-sm-12 col-md-3">Nombre:</label>
             <input class="form-control col-sm-12 col-md-8" type="text" placeholder="Ingrese el nombre" name="txtnombre"
                 required [(ngModel)]="afiliado.nombres" #nombreValidate="ngModel" />
             <div *ngIf="nombreValidate.invalid && (nombreValidate.dirty || nombreValidate.touched)"
@@ -16,7 +16,7 @@
             </div>
         </div>
         <div class="row form-group" >
-            <label class="col-sm-12 col-md-4">Apellido:</label>
+            <label class="col-sm-12 col-md-3">Apellido:</label>
             <input class="form-control col-sm-12 col-md-8" type="text" placeholder="Ingrese el apellido" name="txtapellido"
                 required [(ngModel)]="afiliado.apellido" #apellidoValidate="ngModel" />
             <div *ngIf="apellidoValidate.invalid && (apellidoValidate.dirty || apellidoValidate.touched)"
@@ -27,7 +27,7 @@
             </div>
         </div>
         <div class="row form-group" >
-            <label class="col-sm-12 col-md-4">DNI:</label>
+            <label class="col-sm-12 col-md-3">DNI:</label>
             <input class="form-control col-sm-12 col-md-8" type="number" placeholder="Ingrese el DNI" name="txtdni"
                 required [(ngModel)]="afiliado.dni" #dniValidate="ngModel" />
             <div *ngIf="dniValidate.invalid && (dniValidate.dirty || dniValidate.touched)"
@@ -38,7 +38,7 @@
             </div>
         </div>
         <div class="row form-group" >
-            <label class="col-sm-12 col-md-4">e-mail:</label>
+            <label class="col-sm-12 col-md-3">e-mail:</label>
             <input class="form-control col-sm-12 col-md-8" type="email" placeholder="Ingrese el e-mail" name="txtemail"
                 required [(ngModel)]="afiliado.email" #emailValidate="ngModel" />
             <div *ngIf="emailValidate.invalid && (emailValidate.dirty || emailValidate.touched)"
@@ -49,7 +49,7 @@
             </div>
         </div>
         <div class="row form-group" >
-            <label class="col-sm-12 col-md-4">Telefono:</label>
+            <label class="col-sm-12 col-md-3">Telefono:</label>
             <input class="form-control col-sm-12 col-md-8" type="number" placeholder="Ingrese el telefono" name="txttelefono"
                 required [(ngModel)]="afiliado.telefono" #telefonoValidate="ngModel" />
             <div *ngIf="telefonoValidate.invalid && (telefonoValidate.dirty || telefonoValidate.touched)"
@@ -60,13 +60,13 @@
             </div>
         </div>
         <div class="row form-group" >
-            <label class="col-sm-12 col-md-4">Imagen:</label>
+            <label class="col-sm-12 col-md-3">Imagen:</label>
             <input type="file" alife-file-to-base64 (onFileChanged)="onFileChanges($event)" name="imginput"/>
-            <img style="margin-left: 200px;" src="{{afiliado.imagen}}" height="100px" width="100px">
+            <img id="imagenAfiliado" src="{{afiliado.imagen}}" height="100px" width="100px">
         </div>
 
         <div class="row form-group">
-            <button type="button" class="btn btn-primary" style="margin-right: 20px;" (click)="crearAfiliado()"
+            <button id="principal" type="button" class="btn btn-primary" (click)="crearAfiliado()"
                 [disabled]="!formafiliado.form.valid"><i class="fas fa-paper-plane"></i> Agregar</button>
         </div>
     </div>
