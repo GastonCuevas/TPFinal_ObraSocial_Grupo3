@@ -117,6 +117,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="boton degradado" data-dismiss="modal">Cerrar</button>
+                    <button type="button" (click)="postFb()" class="boton degradado" data-dismiss="modal">Postear</button>
                     <button type="button" class="boton degradado" data-dismiss="modal" [disabled]="!formnoticia2.form.valid"
                         (click)="modificarNoticia()"> <i class="fas fa-paper-plane"></i>  Modificar</button>
                 </div>
