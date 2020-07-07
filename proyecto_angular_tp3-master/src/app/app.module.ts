@@ -22,6 +22,7 @@ import { NoticiaComponent } from './components/noticia/noticia.component';
 import { NovedadComponent } from './components/novedad/novedad.component';
 import { ServicioComponent } from './components/servicio/servicio.component';
 import { PagoComponent } from './components/pago/pago.component';
+import {NgxPrintModule} from 'ngx-print';
 
  
 @NgModule({
@@ -48,6 +49,7 @@ import { PagoComponent } from './components/pago/pago.component';
     HttpClientModule,
     AlifeFileToBase64Module,
     BrowserAnimationsModule,
+    NgxPrintModule,
     ToastrModule.forRoot({
       timeOut: 3000,
       preventDuplicates: true,
