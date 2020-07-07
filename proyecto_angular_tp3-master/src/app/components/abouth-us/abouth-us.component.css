@@ -96,6 +96,26 @@ ul li a{
     box-shadow: 0px 43px 31px -12px rgba(0,0,0,0.47);
 }
 
+#Slider2{
+    background-color: white;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    display: block;
+    align-items: center;
+    justify-items: center;
+    position: static;
+    border: white 8px;
+    border-style: solid;
+    position: relative;
+    width: 80%;
+    height: 10%;
+    border-radius: 5px;
+    overflow: hidden;
+    border-bottom: gray 1px;
+    border-bottom-style: solid;
+}
+
 #section1{
     margin-top: 50px;
     margin-right: 60px;
@@ -103,8 +123,6 @@ ul li a{
     float: right;
     text-align: center;
     padding-bottom: 10px;
-    border-bottom: gray 3px;
-    border-bottom-style: solid;
 }
 
 #Titulo1{
@@ -369,6 +387,21 @@ footer{
     animation-iteration-count: infinite;
 }
 
+#principal2{
+    background-color: white;
+    align-items: center;
+    justify-items: center;
+    width: 100%;
+    display: flex;
+    transform: translate3d(0, 0, 0);
+    transition: all 400ms;
+    animation-name: autoplay2;
+    animation-duration: 40s;
+    animation-direction: alternate;
+    animation-fill-mode: forwards;
+    animation-iteration-count: infinite;
+}
+
 #imgprincipal{
     background-color: white;
     position: static;
@@ -477,6 +510,28 @@ input[id="5"]:checked ~ #secundario #imgsecundario[for="5"]{
     }
 }
 
+@keyframes autoplay2{
+    20%{
+        transform: translate3d(calc(-100% * 0), 0, 0);
+    }
+    
+    40%{
+        transform: translate3d(calc(-100% * 1), 0, 0);
+    }
+    
+    60%{
+        transform: translate3d(calc(-100% * 2), 0, 0);
+    }
+
+    80%{
+        transform: translate3d(calc(-100% * 3), 0, 0);
+    }
+
+    100%{
+        transform: translate3d(calc(-100% * 4), 0, 0);
+    }
+}
+
 #elform{
     text-align: -webkit-center;
     margin-left: 28%;
@@ -536,4 +591,22 @@ input[id="5"]:checked ~ #secundario #imgsecundario[for="5"]{
 
 #env1{
     background-image: linear-gradient(rgb(45, 118, 214),rgb(240, 106, 44));
+}
+
+#info1{
+    float: left;
+    width: 45%;
+    padding: 10px;
+}
+
+#info2{
+    float: right;
+    width: 45%;
+    padding: 10px;
+}
+
+#info3{
+    width: 100%;
+    clear: both;
+    padding: 10px;
 }

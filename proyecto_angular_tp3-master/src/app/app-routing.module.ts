@@ -9,6 +9,7 @@ import { NoticiaComponent } from './components/noticia/noticia.component';
 import { NovedadComponent } from './components/novedad/novedad.component';
 import { ServicioComponent } from './components/servicio/servicio.component';
 import { PagoComponent } from './components/pago/pago.component';
+import { FacebookComponent } from './components/facebook/facebook.component';
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'us', component: AbouthUsComponent },
@@ -18,6 +19,7 @@ const routes: Routes = [
   { path: 'novedad', component: NovedadComponent },
   { path: 'servicio', component: ServicioComponent },
   { path: 'pago', component: PagoComponent },
+  { path: 'facebook', component: FacebookComponent},
   { path: '**', pathMatch:'full',redirectTo:'home' }
 ];
 

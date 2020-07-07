@@ -24,6 +24,8 @@ import { ServicioComponent } from './components/servicio/servicio.component';
 import { PagoComponent } from './components/pago/pago.component';
 import {NgxPrintModule} from 'ngx-print';
 
+import { FacebookModule } from 'ngx-fb';
+import { FacebookComponent } from './components/facebook/facebook.component';
  
 @NgModule({
   declarations: [
@@ -38,7 +40,8 @@ import {NgxPrintModule} from 'ngx-print';
     NoticiaComponent,
     NovedadComponent,
     ServicioComponent,
-    PagoComponent
+    PagoComponent,
+    FacebookComponent
   ],
   imports: [
     BrowserModule,
@@ -54,6 +57,7 @@ import {NgxPrintModule} from 'ngx-print';
       timeOut: 3000,
       preventDuplicates: true,
     }),
+    FacebookModule.forRoot(),
   ],
   providers: [UsuarioService],
   bootstrap: [AppComponent]

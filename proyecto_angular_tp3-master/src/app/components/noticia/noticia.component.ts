@@ -4,6 +4,7 @@ import { UsuarioService } from 'src/app/services/usuario.service';
 import { Noticia } from 'src/app/models/noticia';
 import { NoticiaService } from 'src/app/services/noticia.service';
 import { ToastrService } from 'ngx-toastr';
+
 @Component({
   selector: 'app-noticia',
   templateUrl: './noticia.component.html',
@@ -22,6 +23,7 @@ export class NoticiaComponent implements OnInit {
     this.usuario = new Usuario();
     this.usuarios = new Array<Usuario>();
     this.noticiaSeleccionada = new Noticia();
+    
     
     this.cargarNoticias();
     this.cargarTabla();
@@ -150,9 +152,5 @@ export class NoticiaComponent implements OnInit {
       }
     )
   }
-
-
-
-
 
 }
